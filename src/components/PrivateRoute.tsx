@@ -9,10 +9,10 @@ type PrivateRouteProps = {
 }
 
 const PrivateRoute = ({ children, jwt, path, redirectUrl }: PrivateRouteProps) => {
-    console.log('test');
     if (!jwt) {
         window.location.href = redirectUrl;
     }
+
     return <Route path={path}>
         { children }
     </Route>;

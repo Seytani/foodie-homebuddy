@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import client, { UserInterface } from './client';
+import { getCookie } from './helpers';
+
 import PrivateRoute from './components/PrivateRoute';
 import Header from './components/Header';
+import Ingredients from './components/pages/Ingredients/Ingredients';
+import Recipes from './components/pages/recipes/Recipes';
 
-function App() {
+function App(): JSX.Element {
   const token = getCookie('jwt');
   const callback: string = process.env.REACT_APP_BASE_URL || 'http://localhost:4000';
   const authProviderUrl: string = process.env.REACT_APP_AUTH_PROVIDER || 'http://localhost:3000';
-  const loginUrl = `${authProviderUrl}/users/sign_in?callback=${callback}`
+  const loginUrl = `${authProviderUrl}/users/sign_in?callback=${callback}`;
   const singUpUrl = `${authProviderUrl}/users/sign_up?callback=${callback}`;
+
+  const [user, setUser] = useState<UserInterface | null>(null);
+
+  useEffect(() => {
+    async function fetch() {
+      const user: UserInterface = await client.get('userinfo');
+      setUser(user);
+    }
+    fetch();
+  }, []);
 
   return (
     <div className="App">
       <Router>
-        <Header loginUrl={loginUrl} signUpUrl={singUpUrl}></Header>
+        <Header user={user} loginUrl={loginUrl} signUpUrl={singUpUrl}></Header>
         <Switch>
-          <PrivateRoute jwt={token} path="/ingredients" redirectUrl={loginUrl}>
-            <h1>Ingredients are private</h1>
+          <PrivateRoute path="/ingredients" jwt={token}  redirectUrl={loginUrl}>
+            <Ingredients />
+          </PrivateRoute>
+          <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
+            <Recipes />
           </PrivateRoute>
           <Route path="/">
             <h1>HomePage is public</h1>
@@ -28,12 +46,5 @@ function App() {
     </div>
   );
 }
-
-function getCookie(cookieName: string) {
-  return document.cookie.split('; ')
-    .find(row => row.startsWith(cookieName))
-    ?.split("=")[1] || '';
-}
-
 
 export default App;
