@@ -33,3 +33,12 @@ export interface IngredientInterface {
     updated_at: string;
     user_id: number
 }
+
+export interface RecipeInterface {
+    id: number;
+    name: string;
+    content: string;
+    created_at: string;
+    updated_at: string;
+    user_id: number
+}

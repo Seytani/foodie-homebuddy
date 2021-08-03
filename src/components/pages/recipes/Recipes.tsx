@@ -1,6 +1,8 @@
-import React, { useState, FunctionComponent, ChangeEvent } from 'react';
+import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'react';
 import 'trix/dist/trix';
 import { TrixEditor } from 'react-trix';
+
+import client, { RecipeInterface } from '../../../client';
 
 const Recipes: FunctionComponent = () => {
     const mergeTags = [{
@@ -11,20 +13,38 @@ const Recipes: FunctionComponent = () => {
     }];
 
     const [recipeName, setRecipeName] = useState<string>('');
+    const [editor, setEditor] = useState<any>({});
 
     function handleInputOnChange(e: ChangeEvent<HTMLInputElement>) {
-        console.log(e);
+        setRecipeName(e.target.value);
     }
 
-    function handleTrixOnChange(param1: any, param2: any) {
-        console.log(param1, param2);
+    function handleTrixOnReady(editor: any,) {
+        setEditor(editor);
+    }
+
+    function handleChange(text: string, html: string) {
+        console.log(editor.getDocument());
+    }
+
+    function handleSubmitForm(e: MouseEvent) {
+        e.preventDefault();
+        saveRecipe();
+
+    }
+
+    async function saveRecipe() {
+        const recipe = await client.post('recipes', { name: recipeName,  content: JSON.stringify(editor) });
+        console.log(recipe);
+        //
     }
 
     return <form>
         <label >
             Name:
             <input type="text" value={ recipeName } onChange={handleInputOnChange} />
-            <TrixEditor mergeTags={mergeTags} onChange={handleTrixOnChange} />
+            <TrixEditor mergeTags={mergeTags} onEditorReady={handleTrixOnReady} onChange={handleChange} />
+            <button onClick={handleSubmitForm}>Submit</button>
         </label>
     </form>;
 };
