@@ -37,7 +37,7 @@ export interface IngredientInterface {
 export interface RecipeInterface {
     id: number;
     name: string;
-    content: string;
+    instructions: string;
     created_at: string;
     updated_at: string;
     user_id: number

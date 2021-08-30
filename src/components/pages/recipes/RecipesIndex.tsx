@@ -12,7 +12,11 @@ const RecipesIndex: FunctionComponent<RecipeIndexProps> = ({ recipes }) => {
 
     const recipeList = recipes.map((rp : RecipeInterface) => (
         <li key={rp.id}>
-            <Link to={`${url}/${rp.id}`}>
+            <Link to={{ 
+                pathname: `${url}/${rp.id}`,
+                state: { recipe: rp }
+            }}
+        >
                 { rp.name }
             </Link>
         </li>     

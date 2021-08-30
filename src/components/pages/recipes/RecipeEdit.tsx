@@ -6,7 +6,7 @@ import client from '../../../client';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
-    const [editor, setEditor] = useState<unknown>({});
+    const [instructions, setInstructions] = useState<string>('');
 
     const mergeTags = [{
         trigger: '@',
@@ -19,19 +19,14 @@ const RecipeEdit : FunctionComponent = () => {
         setRecipeName(e.target.value);
     }
 
-    function handleTrixOnReady(editor: unknown,) {
-        console.log('onEditorReady', editor);
-        setEditor(editor);
-    }
-
-    function handleTrixOnChange(html: string, text: string) {
-        console.log('onEditorChange', html, text);
+    function handleTrixOnChange(html: string) {
+        setInstructions(html);
     }
 
     async function handleSubmitForm(e: MouseEvent) {
         e.preventDefault();
         const recipe = await client.post('recipes',
-            { name: recipeName,  content: JSON.stringify(editor) });
+            { name: recipeName,  content: instructions });
         console.log(recipe);
 
     }
@@ -43,7 +38,6 @@ const RecipeEdit : FunctionComponent = () => {
         </label>
         <TrixEditor
             mergeTags={mergeTags}
-            onEditorReady={handleTrixOnReady}
             onChange={handleTrixOnChange}
         />
         <button onClick={handleSubmitForm}>Submit</button>
