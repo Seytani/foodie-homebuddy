@@ -8,7 +8,7 @@ type PrivateRouteProps = {
     redirectUrl: string;
 }
 
-const PrivateRoute = ({ children, jwt, path, redirectUrl }: PrivateRouteProps) => {
+const PrivateRoute = ({ children, jwt, path, redirectUrl }: PrivateRouteProps): JSX.Element => {
     if (!jwt) {
         window.location.href = redirectUrl;
     }

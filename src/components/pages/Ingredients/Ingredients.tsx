@@ -33,10 +33,12 @@ const Ingredients: FunctionComponent = () => {
         </li>)
     );
 
-    return <ul>
-        { ingredientList }
+    return <div>
+        <ul>
+            { ingredientList }
+        </ul>
         <IngredientForm saveIngredient={saveIngredient}/>
-    </ul>;
+    </div>;
 };
 
 export default Ingredients;

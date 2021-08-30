@@ -1,52 +1,38 @@
-import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'react';
-import 'trix/dist/trix';
-import { TrixEditor } from 'react-trix';
+import React, { useState, useEffect, FunctionComponent } from 'react';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import client, { RecipeInterface } from '../../../client';
 
+import RecipesIndex from './RecipesIndex';
+import RecipeEdit from './RecipeEdit';
+import RecipeShow from './RecipeShow';
+
 const Recipes: FunctionComponent = () => {
-    const mergeTags = [{
-        trigger: '@',
-        tags: [
-            { name: 'test 1', tag: '@tag1' },
-        ]
-    }];
+    const { path } = useRouteMatch();
 
-    const [recipeName, setRecipeName] = useState<string>('');
-    const [editor, setEditor] = useState<any>({});
+    const [recipes, setRecipes] = useState<RecipeInterface[] | []>([]);
 
-    function handleInputOnChange(e: ChangeEvent<HTMLInputElement>) {
-        setRecipeName(e.target.value);
-    }
+    useEffect(() => {
+        async function fetch() {
+            const recipes = await client.get<unknown, RecipeInterface[]>('recipes');
+            setRecipes(recipes);
+        }
+        fetch();
+    }, []);
 
-    function handleTrixOnReady(editor: any,) {
-        setEditor(editor);
-    }
-
-    function handleChange(text: string, html: string) {
-        console.log(editor.getDocument());
-    }
-
-    function handleSubmitForm(e: MouseEvent) {
-        e.preventDefault();
-        saveRecipe();
-
-    }
-
-    async function saveRecipe() {
-        const recipe = await client.post('recipes', { name: recipeName,  content: JSON.stringify(editor) });
-        console.log(recipe);
-        //
-    }
-
-    return <form>
-        <label >
-            Name:
-            <input type="text" value={ recipeName } onChange={handleInputOnChange} />
-            <TrixEditor mergeTags={mergeTags} onEditorReady={handleTrixOnReady} onChange={handleChange} />
-            <button onClick={handleSubmitForm}>Submit</button>
-        </label>
-    </form>;
+    return <div>
+        <Switch>
+            <Route exact path={path}>
+                <RecipesIndex recipes={recipes} />
+            </Route>
+            <Route exact path={`${path}/new`}>
+                <RecipeEdit />
+            </Route>
+            <Route exact path={`${path}/:recipeId`}>
+                <RecipeShow recipes={recipes} />
+            </Route>
+        </Switch>
+    </div>;
 };
 
 export default Recipes;
