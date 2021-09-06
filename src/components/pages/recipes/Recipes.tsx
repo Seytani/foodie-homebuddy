@@ -28,8 +28,11 @@ const Recipes: FunctionComponent = () => {
             <Route exact path={`${path}/new`}>
                 <RecipeEdit />
             </Route>
+            <Route exact path={`${path}/:recipeId/edit`}>
+                <RecipeEdit />
+            </Route>
             <Route exact path={`${path}/:recipeId`}>
-                <RecipeShow recipes={recipes} />
+                <RecipeShow />
             </Route>
         </Switch>
     </div>;

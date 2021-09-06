@@ -3,26 +3,21 @@ import { useParams, useLocation } from 'react-router';
 
 import { RecipeInterface } from '../../../client';
 
-type RecipeShowProps = {
-    recipes: RecipeInterface[];
-}
-
 type RecipeShowParams = {
     recipeId: string;
 }
 
-// TODO: move this type to centralize location
+// TODO: move this type to centralize location??
 type RecipeLocationState = {
     recipe: RecipeInterface;
 }
 
-const RecipeShow : FunctionComponent<RecipeShowProps> = ({ recipes }) => {
+const RecipeShow: FunctionComponent = () => {
     const { recipeId } = useParams<RecipeShowParams>();
     const { state } = useLocation<RecipeLocationState>();
 
     const recipe: RecipeInterface = state.recipe;
     if (!recipe || !recipe.instructions) {
-        // TODO: re-fetch using recipe id on reload
         throw new Error();
     }
 
