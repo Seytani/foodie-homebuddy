@@ -1,16 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import { RecipeInterface } from '../../../client';
+import { useRecipes } from '../../../store/recipes';
 
-type RecipeIndexProps = {
-    recipes: RecipeInterface[];
-}
-
-const RecipesIndex: FunctionComponent<RecipeIndexProps> = ({ recipes }) => {
+const RecipesIndex: FunctionComponent = () => {
     const { url } = useRouteMatch();
+    
+    const { recipes } = useRecipes();
 
-    const recipeList = recipes.map((rp : RecipeInterface) => (
+    const recipeList = recipes.map((rp: RecipeInterface) => (
         <li key={rp.id}>
             <Link to={{ 
                 pathname: `${url}/${rp.id}`,

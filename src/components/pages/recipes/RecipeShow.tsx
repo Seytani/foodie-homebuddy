@@ -1,24 +1,21 @@
 import React, { FunctionComponent } from 'react';
-import { useParams, useLocation } from 'react-router';
+import { useParams } from 'react-router';
 
-import { RecipeInterface } from '../../../client';
+import { useRecipes } from '../../../store/recipes';
 
 type RecipeShowParams = {
     recipeId: string;
 }
 
-// TODO: move this type to centralize location??
-type RecipeLocationState = {
-    recipe: RecipeInterface;
-}
-
 const RecipeShow: FunctionComponent = () => {
     const { recipeId } = useParams<RecipeShowParams>();
-    const { state } = useLocation<RecipeLocationState>();
 
-    const recipe: RecipeInterface = state.recipe;
+    const { recipes } = useRecipes();
+
+    const recipe: RecipeInterface | undefined = recipes.find(rc => rc.id === parseInt(recipeId));
     if (!recipe || !recipe.instructions) {
-        throw new Error();
+        // Todo: re-fetch on
+        throw new Error('recipe not found');
     }
 
     return <div>

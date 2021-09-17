@@ -1,7 +1,8 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import React, { useEffect, FunctionComponent } from 'react';
+import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 
-import client, { RecipeInterface } from '../../../client';
+import client from '../../../client';
+import { useRecipes } from '../../../store/recipes';
 
 import RecipesIndex from './RecipesIndex';
 import RecipeEdit from './RecipeEdit';
@@ -10,7 +11,7 @@ import RecipeShow from './RecipeShow';
 const Recipes: FunctionComponent = () => {
     const { path } = useRouteMatch();
 
-    const [recipes, setRecipes] = useState<RecipeInterface[] | []>([]);
+    const { setRecipes } = useRecipes();
 
     useEffect(() => {
         async function fetch() {
@@ -21,9 +22,10 @@ const Recipes: FunctionComponent = () => {
     }, []);
 
     return <div>
+        <Link to="recipes/new">Add Recipe</Link>
         <Switch>
             <Route exact path={path}>
-                <RecipesIndex recipes={recipes} />
+                <RecipesIndex />
             </Route>
             <Route exact path={`${path}/new`}>
                 <RecipeEdit />
