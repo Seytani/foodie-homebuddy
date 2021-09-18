@@ -1,0 +1,32 @@
+.default-layout {
+    height: 100vh;
+    position: relative;
+    aside {
+        padding: 20px;
+        width:  200px;
+
+    }
+}
+
+
+.logo {
+    color: $color-yellow-green-crayola;
+    font-family: 'Pacifico';
+    font-size: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+
+
+    &__subtitle {
+        color: $color-cadet-blue-crayola;
+        font-family: 'Montserrat';
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+    }
+}
+
+.user {
+    text-align: center;
+    margin-bottom: 20px;
+}

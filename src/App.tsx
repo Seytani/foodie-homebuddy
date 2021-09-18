@@ -1,14 +1,16 @@
-import React, { useEffect, useState }  from 'react';
-import './styles/index.scss';
+import React, { useEffect }  from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import client, { UserInterface } from './client';
+import './App.scss';
+import client from './client';
 import { getCookie } from './helpers';
+import { useAuth } from './store/auth';
 
+import DefaultLayout from './components/layouts/Default';
 import PrivateRoute from './components/PrivateRoute';
-import Header from './components/Header';
 import Ingredients from './components/pages/Ingredients/Ingredients';
 import Recipes from './components/pages/recipes/Recipes';
+
 
 function App(): JSX.Element {
   const token = getCookie('jwt');
@@ -17,12 +19,12 @@ function App(): JSX.Element {
   const loginUrl = `${authProviderUrl}/users/sign_in?callback=${callback}`;
   const singUpUrl = `${authProviderUrl}/users/sign_up?callback=${callback}`;
 
-  const [user, setUser] = useState<UserInterface | null>(null);
+  const { auth, setAuth } = useAuth();
 
   useEffect(() => {
     async function fetch() {
-      const user: UserInterface = await client.get('userinfo');
-      setUser(user);
+      const user: IUser = await client.get('userinfo');
+      setAuth({ user, loginUrl, singUpUrl });
     }
     fetch();
   }, []);
@@ -30,18 +32,19 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <Router>
-        <Header user={user} loginUrl={loginUrl} signUpUrl={singUpUrl}></Header>
-        <Switch>
-          <PrivateRoute path="/ingredients" jwt={token}  redirectUrl={loginUrl}>
-            <Ingredients />
-          </PrivateRoute>
-          <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
-            <Recipes />
-          </PrivateRoute>
-          <Route path="/">
-            <h1>HomePage is public</h1>
-          </Route>
-        </Switch>
+        <DefaultLayout>
+          <Switch>
+            <PrivateRoute path="/ingredients" jwt={token}  redirectUrl={loginUrl}>
+              <Ingredients />
+            </PrivateRoute>
+            <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
+              <Recipes />
+            </PrivateRoute>
+            <Route path="/">
+              <h1>HomePage is public</h1>
+            </Route>
+          </Switch>
+        </DefaultLayout>
       </Router>
     </div>
   );

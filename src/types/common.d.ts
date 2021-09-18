@@ -1,10 +1,11 @@
 interface IContextProps {
-    state: any;
+    state: IState;
     dispatch: any;
 }
 
 interface IState {
-    recipes: [] | RecipeInterface[]
+    auth: IAuth 
+    recipes: RecipeInterface[]
 }
 
 interface IAction {
@@ -12,7 +13,17 @@ interface IAction {
     payload: any;
 }
 
-
+interface IAuth {
+    user: IUser;
+    loginUrl: string;
+    signUpUrl: string;
+}
+interface IUser {
+    id: number;
+    email: string;
+    created_at: string;
+    updated_at: string;
+}
 interface RecipeInterface {
     id: number;
     name: string;
@@ -24,6 +35,11 @@ interface RecipeInterface {
 
 interface IRecipeHook {
     recipes: RecipeInterface[];
+    [key: string]: any;
+}
+
+interface IAuthHook {
+    auth: IAuth;
     [key: string]: any;
 }
  

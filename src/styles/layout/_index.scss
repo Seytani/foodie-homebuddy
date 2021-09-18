@@ -1,0 +1,17 @@
+@import "./default";
+
+.d-flex {
+    display: flex;
+}
+
+.fd-column {
+    flex-direction: column;
+}
+
+.fas-flex-end {
+    align-self: flex-end;
+}
+
+.fgrow-1 {
+    flex-grow: 1;
+}

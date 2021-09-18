@@ -1,2 +1,16 @@
 @import './colors';
 @import './reset';
+@import './fonts';
+
+@import './layout/index';
+
+@import './componentes/index';
+
+html {
+    font: 16px "Montserrat", serif;
+    color: $color-gunmetal;
+}
+
+a {
+    text-decoration: none;
+}

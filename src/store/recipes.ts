@@ -9,7 +9,7 @@ export default function recipeReducer(recipes: RecipeInterface[], action: IActio
             return [...recipes, action.payload];
             break;
         default:
-            return [];
+            return recipes;
             break;
     }
 }

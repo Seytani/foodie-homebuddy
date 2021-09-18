@@ -19,12 +19,6 @@ function handleError(error: AxiosError) {
 
 export default client;
 
-export interface UserInterface {
-    id: number;
-    email: string;
-    created_at: string;
-    updated_at: string;
-}
 
 export interface IngredientInterface {
     id: number;
