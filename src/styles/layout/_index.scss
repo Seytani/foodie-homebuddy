@@ -1,5 +1,6 @@
 @import "./default";
 
+/* Parent properties */
 .d-flex {
     display: flex;
 }
@@ -8,6 +9,19 @@
     flex-direction: column;
 }
 
+.fai-center {
+    align-items: center;
+}
+
+.fjc-center {
+    justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Child properties */
 .fas-flex-end {
     align-self: flex-end;
 }

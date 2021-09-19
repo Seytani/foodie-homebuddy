@@ -2,11 +2,24 @@
     margin-left: 20px;
     position: absolute;
     top: 170px;
-    bottom: 0;
+    bottom: 20px;
 
     .login { 
-        margin-top: auto
+        text-align: center;
+        margin-top: auto;
+        color: $color-slate-gray;
+        &:hover {
+            color: $color-charleston-green;
+        }
+
+        a {
+            color: $color-slate-gray;
+            &:hover {
+                color: $color-charleston-green;
+            }
+        }
     }
+
 
 }
 

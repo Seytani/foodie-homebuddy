@@ -21,8 +21,7 @@ const Recipes: FunctionComponent = () => {
         fetch();
     }, []);
 
-    return <div>
-        <Link to="recipes/new">Add Recipe</Link>
+    return <div className="recipes-page">
         <Switch>
             <Route exact path={path}>
                 <RecipesIndex />

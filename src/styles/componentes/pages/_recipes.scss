@@ -1,0 +1,92 @@
+.recipes-index {
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+
+    .header {
+        position: relative;
+        height: 200px;
+        margin-bottom: 20px;
+
+        .strawberry {
+            position: absolute;
+            top: -140px;
+            left: -40px;
+        }
+
+        .search {
+            position: relative;
+            input {
+                width: 450px;
+                line-height: 56px;
+                border-radius: 3em;
+                outline: none;
+                border: none;
+                box-shadow: 0 4px 10px $color-light-gray;
+                padding: 10px 0 10px 75px;
+                font-size: 22px;
+
+            }
+
+            .icon {
+                position: absolute;
+                font-size: 32px;
+                left: 30px;
+            }
+        }
+
+        .fruit-bowl {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    .recipe-list {
+        width: 1080px;
+        margin: 0 auto;
+
+        h4 {
+            margin-bottom: 30px;
+        }
+
+        ul {
+            gap: 66px;
+        }
+    }
+
+    .recipe-card {
+        img {
+            width: 220px;
+        }
+
+        .description {
+            color: $color-davys-grey;
+
+            .title {
+                font-weight: 500;
+                margin-bottom: 7px;
+            }
+            .subtitle {
+                color: $color-cadet-blue-crayola;
+                margin-bottom: 7px;
+            }
+
+           .ingredients-availability span {
+               color: $color-ocean-green;
+               font-size: 30px;
+           } 
+
+           .add-meal-plan {
+               float: right;
+               color: white;
+
+                .circle {
+                    background: $color-blue-munsell;
+                    padding: 8px;
+                    border-radius: 50%;
+                }
+           }
+        }
+    }
+}

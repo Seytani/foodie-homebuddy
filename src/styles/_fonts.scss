@@ -20,6 +20,21 @@
 @font-face {
     font-family: 'Montserrat';
     src: local('Montserrat'),
+         url('../assets/fonts/Montserrat-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: local('Montserrat'),
          url('../assets/fonts/Montserrat-Bold.ttf');
     font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons');
+    src: url('../assets/fonts/MaterialIconsRound-Regular.otf');
 }

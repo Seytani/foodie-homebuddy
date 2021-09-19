@@ -5,11 +5,16 @@ import { useAuth } from '../store/auth';
 
 const Navbar: FunctionComponent = () => {
     const { auth } = useAuth();
-
     const isLoggedIn = !!auth?.user;
+
     const renderLinks = () => {
         if (isLoggedIn) {
-            return  <div className="login"><a href="logout">Logout</a></div>;
+            return <div className="login d-flex fai-center">
+                <span className="material-icons">logout</span>
+                <a href="logout">
+                    Logout
+                </a>
+            </div>;
         } 
         return <div className="login">
             <a href={auth?.loginUrl}>Login</a>
@@ -17,6 +22,7 @@ const Navbar: FunctionComponent = () => {
         </div>;
 
     };
+
     return <nav className="navbar-container d-flex fd-column ">
         <ul className="navbar">
             <li>
@@ -32,7 +38,7 @@ const Navbar: FunctionComponent = () => {
                 <Link to="/ingredients">Ingredients</Link>
             </li>
         </ul>
-        { renderLinks()}
+        { renderLinks() }
     </nav>;
 };
 

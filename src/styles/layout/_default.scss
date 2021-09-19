@@ -1,10 +1,17 @@
 .default-layout {
-    height: 100vh;
     position: relative;
+
     aside {
+        background-color: #fff;
         padding: 20px;
         width:  200px;
+        box-shadow: 3px 0 20px $color-light-gray;
+        z-index: 10;
 
+    }
+
+    main {
+        width: 100%;
     }
 }
 
