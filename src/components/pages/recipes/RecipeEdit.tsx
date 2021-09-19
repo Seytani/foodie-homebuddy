@@ -18,13 +18,13 @@ const RecipeEdit : FunctionComponent = () => {
         console.log(recipe);
     }
 
-    return <div>
+    return <div className="recipes-edit">
         <label>
             Name:
             <input type="text" value={recipeName} onChange={handleNameOnChange} />
         </label>
         <Editor onChange={setInstructions} />
-        <button onClick={handleSubmitForm}>Submit</button>
+        <button onClick={handleSubmitForm}>Save</button>
     </div>;
 };
 

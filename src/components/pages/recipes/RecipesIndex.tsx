@@ -36,7 +36,14 @@ const RecipesIndex: FunctionComponent = () => {
         </div>
 
         <div className="recipe-list">
-            <h4>Your recipes</h4>
+            <div className="d-flex">
+                <h4 className="fgrow-1">Your recipes</h4>
+                <div>
+                    <Link to="recipes/new">
+                        <button>Add Recipe</button>
+                    </Link> 
+                </div>
+            </div>
             <ul className="d-flex flex-wrap">{ recipeList }</ul>
         </div>
     </div>;

@@ -58,6 +58,7 @@
     .recipe-card {
         img {
             width: 220px;
+            margin-bottom: 12px;
         }
 
         .description {
@@ -80,6 +81,7 @@
            .add-meal-plan {
                float: right;
                color: white;
+               padding-top: 14px;
 
                 .circle {
                     background: $color-blue-munsell;
@@ -89,4 +91,10 @@
            }
         }
     }
+}
+
+.recipes-edit {
+    width: 1080px;
+
+    margin: 40px auto 0;
 }
