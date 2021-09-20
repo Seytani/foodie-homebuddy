@@ -147,19 +147,23 @@ module.exports = function (webpackEnv) {
             sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
             root: paths.appSrc,
           },
-        },
-        {
-          loader: require.resolve(preProcessor),
-          options: {
-            sourceMap: true,
-            sassOptions: {
-              includePaths: [
-                path.resolve(__dirname, './src/styles/index.scss'),
-              ],
-            }
-          },
+        });
+        if (preProcessor === 'sass-loader') {
+          loaders .push({
+            loader: require.resolve(preProcessor),
+            options: {
+              sourceMap: true,
+              additionalData: `@import "${path.resolve('./src/styles/index.scss')}";`,
+            },
+          });
+        } else {
+          loaders .push({
+            loader: require.resolve(preProcessor),
+            options: {
+              sourceMap: true,
+            },
+          });
         }
-      );
     }
     return loaders;
   };
@@ -331,6 +335,7 @@ module.exports = function (webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
+        '@': path.resolve(__dirname, '../src'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',

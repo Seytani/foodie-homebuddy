@@ -4,6 +4,8 @@ import { Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import client from '../../../client';
 import { useRecipes } from '../../../store/recipes';
 
+import '../../../styles/components/pages/recipes.scss';
+
 import RecipesIndex from './RecipesIndex';
 import RecipeEdit from './RecipeEdit';
 import RecipeShow from './RecipeShow';
