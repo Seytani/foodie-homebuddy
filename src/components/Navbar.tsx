@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+import '@/styles/components/Navbar.scss';
+
 import { useAuth } from '../store/auth';
 
 const Navbar: FunctionComponent = () => {

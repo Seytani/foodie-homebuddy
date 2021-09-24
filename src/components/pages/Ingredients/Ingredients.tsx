@@ -5,7 +5,7 @@ import client, { IngredientInterface } from '../../../client';
 import IngredientForm from './IngredientForm';
 
 const Ingredients: FunctionComponent = () => {
-    const [ingredients, setIngredients] = useState<IngredientInterface[] | []>([]);
+    const [ingredients, setIngredients] = useState<IngredientInterface[]>([]);
 
     useEffect(() => {
         async function fetch() {

@@ -1,7 +1,8 @@
 import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'react';
 
 import client from '../../../client';
-import Editor from '../../utils/Editor';
+import Editor from '../../base/Editor';
+import Input from '../../base/Input';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
@@ -19,10 +20,9 @@ const RecipeEdit : FunctionComponent = () => {
     }
 
     return <div className="recipes-edit">
-        <label>
-            Name:
-            <input type="text" value={recipeName} onChange={handleNameOnChange} />
-        </label>
+        <div className="recipe-name mb-20">
+            <Input label="Recipe Name" />
+        </div>
         <Editor onChange={setInstructions} />
         <button onClick={handleSubmitForm}>Save</button>
     </div>;

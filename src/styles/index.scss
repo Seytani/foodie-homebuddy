@@ -1,6 +1,7 @@
 @import './colors';
 @import './reset';
 @import './fonts';
+@import './layout';
 
 html {
     font: 16px "Montserrat", serif;
@@ -31,6 +32,12 @@ button {
   &:hover {
     background-color: $color-keppel;
   }
+}
+
+input {
+  border: none;
+  border-bottom: solid 2px $color-light-gray;
+  outline: none;
 }
 
 .material-icons {

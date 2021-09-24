@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
-import '@/styles/layout/default.scss';
+import '@/styles/components/layout/Default.scss';
 
 import { useAuth } from '../../store/auth';
 import Navbar from '../Navbar';
