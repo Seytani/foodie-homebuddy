@@ -24,7 +24,7 @@ const RecipeEdit : FunctionComponent = () => {
         <div className="recipe-header d-flex">
             <div className="recipe-info fgrow-1">
                 <div className="recipe-name mb-20">
-                    <Input label="Recipe Name" />
+                    <Input label="Recipe Name" onChange={handleNameOnChange}/>
                 </div>
                 <div className="recipe-stats d-flex fjc-space-between">
                     <div className="stat">

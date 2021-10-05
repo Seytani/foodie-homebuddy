@@ -1,15 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 
 import '@/styles/components/base/Input.scss';
 
 interface InputProps {
     label: string;
+    onChange: (e:ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: FunctionComponent<InputProps> = ({ label}) => {
+const Input: FunctionComponent<InputProps> = ({ label, onChange}) => {
     return <div className="input d-flex fd-column">
         <label htmlFor="" className="forder-2">{ label }</label>
-        <input type="text"/>
+        <input onChange={(e:ChangeEvent<HTMLInputElement>) => onChange(e)} type="text"/>
     </div>;
 };
 
