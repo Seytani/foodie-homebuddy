@@ -1,6 +1,7 @@
 import React, { useEffect }  from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import '@/styles/index.scss';
 import client from './client';
 import { getCookie } from './helpers';
 import { useAuth } from './store/auth';
@@ -9,6 +10,7 @@ import DefaultLayout from './components/layouts/Default';
 import PrivateRoute from './components/PrivateRoute';
 import Ingredients from './components/pages/Ingredients/Ingredients';
 import Recipes from './components/pages/recipes/Recipes';
+import Test from '@/components/pages/Test';
 
 
 function App(): JSX.Element {
@@ -39,6 +41,9 @@ function App(): JSX.Element {
             <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
               <Recipes />
             </PrivateRoute>
+            <Route path="/test">
+              <Test />
+            </Route>
             <Route path="/">
               <h1>HomePage is public</h1>
             </Route>

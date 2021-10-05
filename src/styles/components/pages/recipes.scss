@@ -97,4 +97,29 @@
     width: 1080px;
 
     margin: 40px auto 0;
+
+    .recipe-header {
+        .image-container {
+            height: 480px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        img {
+            width: 480px;
+        }
+
+        .stat {
+            font-weight: 300;
+
+            &__value {
+                font-size: 40px;
+                text-align: center;
+            }
+            
+            &__name {
+                font-size: 14px;
+            }
+        }
+    }
 }

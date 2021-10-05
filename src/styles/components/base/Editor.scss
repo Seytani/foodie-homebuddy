@@ -1,5 +1,47 @@
-.ProseMirror {
-    border: solid 1px red;
+.editor {
+    border: solid 2px $color-ocean-green;
     border-radius: 8px;
+
+    &:hover {
+        border-color: $color-granny-smith-apple;
+    }
+
+    &:focus {
+        border-color: $color-granny-smith-apple;
+    }
+
+    .menu-bar {
+        border-bottom: 1px solid $color-cadet-blue-crayola;
+        margin-bottom: 20px;
+        padding: 7px;
+
+        &__icon {
+            background: none;
+            border: none;
+            border-radius: 4px;
+            color: $color-slate-gray;
+            height: 28px;
+            margin-right: 10px;
+            padding: 0;
+            text-align: center;
+            width: 28px;
+
+            &:hover {
+                background: $color-gainsboro;
+            }
+
+            span {
+                display: flex;
+                font-size: 22px;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.ProseMirror {
     height: 100%;
+    min-height: 600px;
+    outline: none;
+    padding: 0 7px;
 }

@@ -1,7 +1,12 @@
-@import './colors';
 @import './reset';
 @import './fonts';
 @import './layout';
+
+@import './components/base/Button.scss';
+
+* {
+  box-sizing: border-box;
+}
 
 html {
     font: 16px "Montserrat", serif;
@@ -15,23 +20,6 @@ a {
 h4 {
   font-size: 24px;
   font-weight: bold;
-}
-
-button {
-  min-width: 64px;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border: none;
-  background-color: $color-ocean-green;
-  color: white;
-  border-radius: 16px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0px 5px 2px -2px $color-light-gray;
-
-  &:hover {
-    background-color: $color-keppel;
-  }
 }
 
 input {

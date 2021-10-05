@@ -33,7 +33,7 @@ const Ingredients: FunctionComponent = () => {
         </li>)
     );
 
-    return <div>
+    return <div className="d-flex fjc-center">
         <ul>
             { ingredientList }
         </ul>

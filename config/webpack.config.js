@@ -153,7 +153,7 @@ module.exports = function (webpackEnv) {
             loader: require.resolve(preProcessor),
             options: {
               sourceMap: true,
-              additionalData: `@import "${path.resolve('./src/styles/index.scss')}";`,
+              additionalData: `@import "${path.resolve('./src/styles/_colors.scss')}";`,
             },
           });
         } else {
