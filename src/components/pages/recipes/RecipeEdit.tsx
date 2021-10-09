@@ -4,6 +4,7 @@ import defaultRecipe from '@/assets/img/default-recipe.jpg';
 import client from '../../../client';
 import Editor from '../../base/Editor';
 import Input from '../../base/Input';
+import RecipeName from './RecipeName';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
@@ -21,21 +22,19 @@ const RecipeEdit : FunctionComponent = () => {
     }
 
     return <div className="recipes-edit">
-        <div className="recipe-header d-flex">
+        <div className="recipe-header d-flex mb-30">
             <div className="recipe-info fgrow-1">
-                <div className="recipe-name mb-20">
-                    <Input label="Recipe Name" onChange={handleNameOnChange}/>
-                </div>
-                <div className="recipe-stats d-flex fjc-space-between">
-                    <div className="stat">
+                <RecipeName  onChange={handleNameOnChange} />
+                <div className="recipe-stats mb-30 d-flex">
+                    <div className="stat fgrow-1">
                         <div className="stat__value">8</div>
                         <div className="stat__name">Ingredients</div>
                     </div>
-                    <div className="stat">
+                    <div className="stat fgrow-1">
                         <div className="stat__value">2</div>
                         <div className="stat__name">Hours</div>
                     </div>
-                    <div className="stat">
+                    <div className="stat fgrow-1">
                         <div className="stat__value">310</div>
                         <div className="stat__name">Calories</div>
                     </div>

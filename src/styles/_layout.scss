@@ -36,10 +36,16 @@
     order: 2;
 }
 
-$sizes: 5, 10, 15, 20;
+$sizes: 5, 10, 15, 20, 30, 40;
 
 @each $size in $sizes {
     .mb-#{$size} {
         margin-bottom: #{$size}px;
+    }
+}
+
+@each $size in $sizes {
+    .ml-#{$size} {
+        margin-left: #{$size}px;
     }
 }

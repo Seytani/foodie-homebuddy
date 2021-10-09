@@ -100,7 +100,7 @@
 
     .recipe-header {
         .image-container {
-            height: 480px;
+            max-height: 400px;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -108,8 +108,23 @@
         img {
             width: 480px;
         }
+    }
+
+    .recipe-name {
+        width: 690px;
+        padding-right: 20px;
+    }
+
+    .recipe-stats {
+        text-align: center;
+        width: 450px;
 
         .stat {
+            &:last-child {
+                border: none;
+            }
+
+            border-right: 1px solid $color-light-gray;
             font-weight: 300;
 
             &__value {

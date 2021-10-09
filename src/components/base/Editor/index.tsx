@@ -4,6 +4,7 @@ import StarterKit from '@tiptap/starter-kit';
 
 import '@/styles/components/base/Editor.scss';
 import MenuBar from './MenuBar';
+import IngredientList from './IngredientList';
 
 interface EditorProps {
     onChange: React.Dispatch<React.SetStateAction<string>>;
@@ -24,6 +25,7 @@ const Editor: FunctionComponent<EditorProps> = ({ onChange }) => {
     return (
         <div className="editor">
             <MenuBar />
+            <IngredientList />
             <EditorContent editor={editor} />
         </div>
     );
