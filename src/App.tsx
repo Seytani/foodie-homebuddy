@@ -7,7 +7,7 @@ import { getCookie } from './helpers';
 import { useAuth } from './store/auth';
 
 import DefaultLayout from './components/layouts/Default';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/base/PrivateRoute';
 import Ingredients from './components/pages/Ingredients/Ingredients';
 import Recipes from './components/pages/recipes/Recipes';
 import Test from '@/components/pages/Test';

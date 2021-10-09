@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react';
 import '@/styles/components/layout/Default.scss';
 
 import { useAuth } from '../../store/auth';
-import Navbar from '../Navbar';
+import Navbar from '../base/Navbar';
 
 const DefaultLayout: FunctionComponent = (props) => {
 

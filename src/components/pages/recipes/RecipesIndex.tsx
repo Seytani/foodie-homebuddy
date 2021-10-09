@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import strawberryImage from '../../../assets/img/strawberry-grain.png';
-import fruitBowlImage from '../../../assets/img/img-fruit-bowl.png';
+import "@/styles/components/pages/recipes/recipes_index.scss";
+import strawberryImage from '@/assets/img/strawberry-grain.png';
+import fruitBowlImage from '@/assets/img/img-fruit-bowl.png';
+import { useRecipes } from '@/store/recipes';
 
-
-import { useRecipes } from '../../../store/recipes';
 import RecipeCard from './RecipeCard';
 
 const RecipesIndex: FunctionComponent = () => {

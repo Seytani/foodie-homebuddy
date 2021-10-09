@@ -1,5 +1,6 @@
 import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'react';
 
+import '@/styles/components/pages/recipes/recipes_edit.scss';
 import defaultRecipe from '@/assets/img/default-recipe.jpg';
 import client from '../../../client';
 import Editor from '../../base/Editor';
