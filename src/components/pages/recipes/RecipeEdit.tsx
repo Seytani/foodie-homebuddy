@@ -3,8 +3,8 @@ import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'rea
 import defaultRecipe from '@/assets/img/default-recipe.jpg';
 import client from '../../../client';
 import Editor from '../../base/Editor';
-import Input from '../../base/Input';
 import RecipeName from './RecipeName';
+import IngredientList from '@/components/pages/recipes/IngredientList';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
@@ -48,7 +48,9 @@ const RecipeEdit : FunctionComponent = () => {
             </div>
         </div>
         <div className="editor-container mb-20">
-            <Editor onChange={setInstructions} />
+            <Editor onChange={setInstructions}>
+                <IngredientList />
+            </Editor>
         </div>
         <button className="btn" onClick={handleSubmitForm}>Save</button>
     </div>;

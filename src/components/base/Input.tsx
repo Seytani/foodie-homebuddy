@@ -2,7 +2,7 @@ import React, { FunctionComponent, ChangeEvent, EventHandler, FocusEvent } from 
 
 import '@/styles/components/base/Input.scss';
 
-interface InputProps {
+export interface InputProps {
     label: string;
     value?: string;
     onChange?: EventHandler<ChangeEvent<HTMLInputElement>>;
