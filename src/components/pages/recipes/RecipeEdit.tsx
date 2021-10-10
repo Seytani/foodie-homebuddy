@@ -6,13 +6,19 @@ import client from '../../../client';
 import Editor from '../../base/Editor';
 import RecipeName from './RecipeName';
 import IngredientList from '@/components/pages/recipes/IngredientList';
+import IngredientMiniForm from '@/components/pages/recipes/IngredientMiniForm';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
     const [instructions, setInstructions] = useState<string>('');
+    const [ingredients, setIngredients] = useState<IngredientInterface[]>([]);
 
     function handleNameOnChange(e: ChangeEvent<HTMLInputElement>) {
         setRecipeName(e.target.value);
+    }
+
+    function handleAddIngredientClick(e: MouseEvent) {
+        console.log('event', e);
     }
 
     async function handleSubmitForm(e: MouseEvent) {
@@ -48,10 +54,16 @@ const RecipeEdit : FunctionComponent = () => {
                 <img src={defaultRecipe} alt="image recipe" />
             </div>
         </div>
+        <div className="ingredient-list-container mb-20">
+            <IngredientList ingredients={ingredients} />
+            <IngredientMiniForm />
+            <button className="btn d-flex fai-center" onClick={handleAddIngredientClick}>
+                <span className="material-icons">add_circle_outline</span>
+                Add Ingredient
+            </button>
+        </div>
         <div className="editor-container mb-20">
-            <Editor onChange={setInstructions}>
-                <IngredientList />
-            </Editor>
+            <Editor onChange={setInstructions} />
         </div>
         <button className="btn" onClick={handleSubmitForm}>Save</button>
     </div>;

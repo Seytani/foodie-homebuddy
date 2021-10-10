@@ -11,3 +11,10 @@ export default {
 } as Meta;
 
 export const Primary: Story = (args: InputProps) => <Input {...args}/>;
+
+export const Test: Story = () => <div className="d-flex">
+    <div className="classField">
+        <Input label="test" />
+    </div>
+    <Input label="test" />
+</div>;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, FunctionComponent } from 'react';
 
-import client, { IngredientInterface } from '../../../client';
+import client from '../../../client';
 
 import IngredientForm from './IngredientForm';
 
