@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACb,WAAW,EAAE,IAAI;CAOpB;;AARD,AAIQ,gBAJQ,CAIP,iBAAM,CAAC;EACJ,WAAW,EAAE,GAAG;CACnB",
+    "sources": [
+        "IngredientList.scss"
+    ],
+    "names": [],
+    "file": "IngredientList.css"
+}

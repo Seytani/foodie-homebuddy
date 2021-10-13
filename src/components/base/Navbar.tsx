@@ -2,11 +2,12 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import '@/styles/components/base/Navbar.scss';
+import { useSelector } from '@/store/hooks';
+import { authSelector } from '@/store/auth-slice';
 
-import { useAuth } from '../../store/auth';
 
 const Navbar: FunctionComponent = () => {
-    const { auth } = useAuth();
+    const auth = useSelector(authSelector);
     const isLoggedIn = !!auth?.user;
 
     const renderLinks = () => {

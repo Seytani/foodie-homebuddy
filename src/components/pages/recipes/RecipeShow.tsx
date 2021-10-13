@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { useParams } from 'react-router';
 
-import { useRecipes } from '../../../store/recipes';
+import { useSelector } from "@/store/hooks";
+import { recipesSelector } from "@/store/recipes-slice";
 
 type RecipeShowParams = {
     recipeId: string;
@@ -10,7 +11,7 @@ type RecipeShowParams = {
 const RecipeShow: FunctionComponent = () => {
     const { recipeId } = useParams<RecipeShowParams>();
 
-    const { recipes } = useRecipes();
+    const recipes = useSelector(recipesSelector);
 
     const recipe: RecipeInterface | undefined = recipes.find(rc => rc.id === parseInt(recipeId));
     if (!recipe || !recipe.instructions) {
