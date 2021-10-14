@@ -8,7 +8,7 @@ import RecipeEdit from "./RecipeEdit";
 import RecipeShow from "./RecipeShow";
 
 import { useDispatch } from "@/store/hooks";
-import { set } from "@/store/recipes-slice";
+import { set_recipes } from "@/store/recipes-slice";
 
 const Recipes: FunctionComponent = () => {
 	const { path } = useRouteMatch();
@@ -18,7 +18,7 @@ const Recipes: FunctionComponent = () => {
 	useEffect(() => {
 		async function fetch() {
 			const recipes = await client.get<unknown, RecipeInterface[]>("recipes");
-			dispatch(set(recipes));
+			dispatch(set_recipes(recipes));
 		}
 		fetch();
 	}, []);
