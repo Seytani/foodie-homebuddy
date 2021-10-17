@@ -14,10 +14,7 @@ const Input: FunctionComponent<InputProps> = (props) => {
     return <div className="input d-flex fd-column">
         <label htmlFor="" className="forder-2">{ props.label }</label>
         <input
-            value={props.value}
-            onChange={(e) => props.onChange(e)} 
-            onBlur={(e) => props.onBlur(e) }
-            autoFocus={props.autoFocus}
+            { ...props }
             type="text"
         />
     </div>;

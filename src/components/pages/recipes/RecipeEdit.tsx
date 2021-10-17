@@ -12,13 +12,15 @@ const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
     const [instructions, setInstructions] = useState<string>('');
     const [ingredients, setIngredients] = useState<IngredientInterface[]>([]);
+    const [prepTime, setPrepTime] = useState(0);
+    const [calories, setCalories] = useState(0);
 
     function handleNameOnChange(e: ChangeEvent<HTMLInputElement>) {
         setRecipeName(e.target.value);
     }
 
-    function handleAddIngredientClick(e: MouseEvent) {
-        console.log('event', e);
+    function saveIngredient(name: string, qty: string) {
+        setIngredients([...ingredients, { name, quantity: qty}]);
     }
 
     async function handleSubmitForm(e: MouseEvent) {
@@ -32,17 +34,36 @@ const RecipeEdit : FunctionComponent = () => {
         <div className="recipe-header d-flex mb-30">
             <div className="recipe-info fgrow-1">
                 <RecipeName  onChange={handleNameOnChange} />
-                <div className="recipe-stats mb-30 d-flex">
+                <div className="recipe-last-prep mb-20">
+                    Last prep: <span>3 weeks ago</span>
+                </div>
+                <div className="recipe-tags mb-30">
+                    <span>mexican</span>
+                </div>
+                <div className="recipe-stats mb-40 d-flex">
                     <div className="stat fgrow-1">
-                        <div className="stat__value">8</div>
+                        <div className="stat__value">{ ingredients.length }</div>
                         <div className="stat__name">Ingredients</div>
                     </div>
                     <div className="stat fgrow-1">
-                        <div className="stat__value">2</div>
+                        <div
+                            contentEditable
+                            className="stat__value"
+                            onInput={() => console.log('heeey')}
+                            suppressContentEditableWarning
+                        >
+                            { prepTime }
+                        </div>
                         <div className="stat__name">Hours</div>
                     </div>
                     <div className="stat fgrow-1">
-                        <div className="stat__value">310</div>
+                        <div
+                            contentEditable
+                            className="stat__value"
+                            suppressContentEditableWarning
+                        >
+                            { calories }
+                        </div>
                         <div className="stat__name">Calories</div>
                     </div>
                 </div>
@@ -54,13 +75,10 @@ const RecipeEdit : FunctionComponent = () => {
                 <img src={defaultRecipe} alt="image recipe" />
             </div>
         </div>
+        <hr className="mb-20"/>
         <div className="ingredient-list-container mb-20">
             <IngredientList ingredients={ingredients} />
-            <IngredientMiniForm />
-            <button className="btn d-flex fai-center" onClick={handleAddIngredientClick}>
-                <span className="material-icons">add_circle_outline</span>
-                Add Ingredient
-            </button>
+            <IngredientMiniForm saveIngredient={saveIngredient} />
         </div>
         <div className="editor-container mb-20">
             <Editor onChange={setInstructions} />

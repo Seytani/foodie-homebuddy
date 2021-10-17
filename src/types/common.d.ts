@@ -39,7 +39,8 @@ interface IAuthHook {
     [key: string]: any;
 }
 interface IngredientInterface {
-    id: number;
+    id?: number;
     name: string;
-    user_id: number
+    quantity: string;
+    user_id?: number
 }

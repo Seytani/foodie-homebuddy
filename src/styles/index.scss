@@ -32,6 +32,12 @@ h4 {
   font-weight: bold;
 }
 
+hr {
+  border:none;
+  background-color: $color-light-gray;
+  height: 2px;
+}
+
 input {
   border: none;
   border-bottom: solid 2px $color-light-gray;

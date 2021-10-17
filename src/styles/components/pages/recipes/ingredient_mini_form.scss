@@ -1,9 +1,9 @@
 .ingredient-miniform {
-    width: 300px;
-    padding: 30px 15px;
+    display: inline-block;
+    padding: 30px 40px 20px;
 
     .qty-field {
-        width: 70px;
         margin-right: 20px;
+        width: 70px;
     }
 }
