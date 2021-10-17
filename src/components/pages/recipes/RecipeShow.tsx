@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { useParams } from 'react-router';
 
-import { useSelector } from "@/store/hooks";
-import { recipesSelector } from "@/store/recipes-slice";
+import { useSelector } from '@/store/hooks';
+import { recipesSelector } from '@/store/recipes-slice';
 
 type RecipeShowParams = {
     recipeId: string;
