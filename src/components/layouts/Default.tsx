@@ -2,13 +2,15 @@ import React, { FunctionComponent } from 'react';
 
 import '@/styles/components/layout/Default.scss';
 
-import { useAuth } from '../../store/auth';
 import Navbar from '../base/Navbar';
+import { useDispatch, useSelector } from '@/store/hooks';
+import { authSelector } from '@/store/auth-slice';
 
 const DefaultLayout: FunctionComponent = (props) => {
 
-    const { auth } = useAuth();
-
+    const auth = useSelector(authSelector);
+    const dispatch = useDispatch();
+    
     function getUsername(user: IUser): string {
         if (!user) {
             return '';
