@@ -21,15 +21,11 @@ interface IAuth {
 interface IUser {
     id: number;
     email: string;
-    created_at: string;
-    updated_at: string;
 }
 interface RecipeInterface {
     id: number;
     name: string;
     instructions: string;
-    created_at: string;
-    updated_at: string;
     user_id: number
 }
 
@@ -45,7 +41,5 @@ interface IAuthHook {
 interface IngredientInterface {
     id: number;
     name: string;
-    created_at: string;
-    updated_at: string;
     user_id: number
 }
