@@ -33,15 +33,6 @@ interface RecipeInterface {
     user_id: number
 }
 
-interface IRecipeHook {
-    recipes: RecipeInterface[];
-    [key: string]: any;
-}
-
-interface IAuthHook {
-    auth: IAuth;
-    [key: string]: any;
-}
 interface IngredientInterface {
     id: number;
     name: string;

@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '@/styles/index.scss';
 import client from './client';
 import { getCookie } from './helpers';
-import { useAuth } from './store/auth';
 
 import DefaultLayout from './components/layouts/Default';
 import PrivateRoute from './components/base/PrivateRoute';
 import Ingredients from './components/pages/Ingredients/Ingredients';
 import Recipes from './components/pages/recipes/Recipes';
 import Test from '@/components/pages/Test';
+import { useDispatch } from './store/hooks';
+import { set_auth } from './store/auth-slice';
 
 
 function App(): JSX.Element {
@@ -18,14 +19,14 @@ function App(): JSX.Element {
   const callback: string = process.env.REACT_APP_BASE_URL || 'http://localhost:4000';
   const authProviderUrl: string = process.env.REACT_APP_AUTH_PROVIDER || 'http://localhost:3000';
   const loginUrl = `${authProviderUrl}/users/sign_in?callback=${callback}`;
-  const singUpUrl = `${authProviderUrl}/users/sign_up?callback=${callback}`;
+  const signUpUrl = `${authProviderUrl}/users/sign_up?callback=${callback}`;
 
-  const { auth, setAuth } = useAuth();
-
+  const dispatch = useDispatch();
+    
   useEffect(() => {
     async function fetch() {
       const user: IUser = await client.get('userinfo');
-      setAuth({ user, loginUrl, singUpUrl });
+      dispatch(set_auth({ user, loginUrl, signUpUrl }));
     }
     fetch();
   }, []);
