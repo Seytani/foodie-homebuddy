@@ -4,11 +4,11 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import client from "@/client";
 
 import RecipesIndex from "./RecipesIndex";
-import RecipeEdit from "./RecipeEdit";
-import RecipeShow from "./RecipeShow";
+import RecipeEdit from './RecipeEdit';
+import RecipeShow from './RecipeShow';
 
-import { useDispatch } from "@/store/hooks";
-import { set_recipes } from "@/store/recipes-slice";
+import { useDispatch } from '@/store/hooks';
+import { set_recipes } from '@/store/recipes-slice';
 
 const Recipes: FunctionComponent = () => {
 	const { path } = useRouteMatch();
