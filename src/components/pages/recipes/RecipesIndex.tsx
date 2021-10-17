@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import React, { FunctionComponent } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import "@/styles/components/pages/recipes/recipes_index.scss";
 import strawberryImage from "@/assets/img/strawberry-grain.png";
