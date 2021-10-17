@@ -1,7 +1,7 @@
 import React, { useEffect, FunctionComponent } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
-import client from "@/client";
+import client from '@/client';
 
 import RecipesIndex from "./RecipesIndex";
 import RecipeEdit from './RecipeEdit';
