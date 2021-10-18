@@ -27,7 +27,6 @@ const RecipeEdit : FunctionComponent = () => {
         e.preventDefault();
         const recipe = await client.post('recipes',
             { name: recipeName,  content: instructions });
-        console.log(recipe);
     }
 
     return <div className="recipes-edit">

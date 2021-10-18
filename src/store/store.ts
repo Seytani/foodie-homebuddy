@@ -3,10 +3,10 @@ import authReducer from './auth-slice';
 import recipesReducer from './recipes-slice';
 
 export const store = configureStore({
-	reducer: {
-        auth: authReducer,
-        recipes: recipesReducer
-	},
+        reducer: {
+                auth: authReducer,
+                recipes: recipesReducer
+        },
 });
 
 export type AppDispatch = typeof store.dispatch;

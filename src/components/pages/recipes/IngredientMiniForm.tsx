@@ -22,7 +22,6 @@ const IngredientMiniForm: FunctionComponent<IngredientMiniFormProps> = ({ saveIn
         setVisible(false);
     }
 
-    console.log(visible);
     if (!visible) {
         return <button className="btn d-flex fai-center" onClick={handleAddIngredientClick}>
             <span className="material-icons">add_circle_outline</span>

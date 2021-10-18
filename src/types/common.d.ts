@@ -4,13 +4,18 @@ interface IContextProps {
 }
 
 interface IState {
-    auth: IAuth 
-    recipes: RecipeInterface[]
+    auth: IAuth;
+    recipes: IRecipes;
 }
 
 interface IAction {
     type: string;
     payload: any;
+}
+
+interface IRecipes {
+    recipes: RecipeInterface[];
+    status: string;
 }
 
 interface IAuth {
