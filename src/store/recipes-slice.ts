@@ -7,9 +7,19 @@ const initialState = {
 	status: 'idle',
 };
 
-export const fetchRecipes = createAsyncThunk('recipes/fetch', async () => {
-	return await client.get<unknown, RecipeInterface[]>("recipes");
-});
+export const fetchRecipes = createAsyncThunk(
+	'recipes/fetch',
+	async () => {
+		return await client.get<unknown, RecipeInterface[]>("recipes");
+	}
+);
+
+export const postRecipe = createAsyncThunk(
+	'recipes/post',
+	async (newRecipe: RecipeInterface) => {
+    	return await client.post('recipes', newRecipe);
+	}
+);
 
 const recipesSlice = createSlice({
 	name: "recipes",

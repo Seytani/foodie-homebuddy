@@ -2,11 +2,12 @@ import React, { useState, FunctionComponent, ChangeEvent, MouseEvent } from 'rea
 
 import '@/styles/components/pages/recipes/recipes_edit.scss';
 import defaultRecipe from '@/assets/img/default-recipe.jpg';
-import client from '../../../client';
-import Editor from '../../base/Editor';
+import { postRecipe } from '@/store/recipes-slice';
+import { useDispatch } from '@/store/hooks';
+import Editor from '@/components/base/Editor';
 import RecipeName from './RecipeName';
-import IngredientList from '@/components/pages/recipes/IngredientList';
-import IngredientMiniForm from '@/components/pages/recipes/IngredientMiniForm';
+import IngredientList from './IngredientList';
+import IngredientMiniForm from './IngredientMiniForm';
 
 const RecipeEdit : FunctionComponent = () => {
     const [recipeName, setRecipeName] = useState<string>('');
@@ -14,6 +15,7 @@ const RecipeEdit : FunctionComponent = () => {
     const [ingredients, setIngredients] = useState<IngredientInterface[]>([]);
     const [prepTime, setPrepTime] = useState(0);
     const [calories, setCalories] = useState(0);
+    const dispatch = useDispatch();
 
     function handleNameOnChange(e: ChangeEvent<HTMLInputElement>) {
         setRecipeName(e.target.value);
@@ -25,8 +27,7 @@ const RecipeEdit : FunctionComponent = () => {
 
     async function handleSubmitForm(e: MouseEvent) {
         e.preventDefault();
-        const recipe = await client.post('recipes',
-            { name: recipeName,  content: instructions });
+        dispatch(postRecipe({ name: recipeName,  instructions }));
     }
 
     return <div className="recipes-edit">
@@ -48,7 +49,6 @@ const RecipeEdit : FunctionComponent = () => {
                         <div
                             contentEditable
                             className="stat__value"
-                            onInput={() => console.log('heeey')}
                             suppressContentEditableWarning
                         >
                             { prepTime }

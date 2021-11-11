@@ -28,10 +28,10 @@ interface IUser {
     email: string;
 }
 interface RecipeInterface {
-    id: number;
+    id?: number;
     name: string;
     instructions: string;
-    user_id: number
+    user_id?: number
 }
 
 interface IngredientInterface {
