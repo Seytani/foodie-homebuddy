@@ -5,7 +5,7 @@ import "@/styles/components/pages/recipes/recipes_index.scss";
 import strawberryImage from "@/assets/img/strawberry-grain.png";
 import fruitBowlImage from "@/assets/img/img-fruit-bowl.png";
 
-import { useSelector } from "@/store/hooks";
+import { useSelector } from 'react-redux';
 import { recipesSelector } from "@/store/recipes-slice";
 
 import RecipeCard from "./RecipeCard";

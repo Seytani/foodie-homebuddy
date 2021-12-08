@@ -4,13 +4,18 @@ interface IContextProps {
 }
 
 interface IState {
-    auth: IAuth 
-    recipes: RecipeInterface[]
+    auth: IAuth;
+    recipes: IRecipes;
 }
 
 interface IAction {
     type: string;
     payload: any;
+}
+
+interface IRecipes {
+    recipes: RecipeInterface[];
+    status: string;
 }
 
 interface IAuth {
@@ -23,14 +28,15 @@ interface IUser {
     email: string;
 }
 interface RecipeInterface {
-    id: number;
+    id?: number;
     name: string;
     instructions: string;
-    user_id: number
+    user_id?: number
 }
 
 interface IngredientInterface {
-    id: number;
+    id?: number;
     name: string;
-    user_id: number
+    quantity: string;
+    user_id?: number
 }

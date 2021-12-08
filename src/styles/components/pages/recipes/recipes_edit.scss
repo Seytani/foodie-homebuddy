@@ -1,11 +1,15 @@
 .recipes-edit {
-    width: 1080px;
-
+    width: 978px;
     margin: 40px auto 0;
+    padding-top: 30px;
+
+    .recipe-info {
+        padding-top: 30px;
+    }
 
     .recipe-header {
         .image-container {
-            max-height: 400px;
+            max-height: 480px;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -15,9 +19,25 @@
         }
     }
 
+    .recipe-last-prep {
+        font-size: 14px;
+
+        span {
+            color: $color-blue-munsell;
+        }
+    }
+
     .recipe-name {
-        width: 690px;
         padding-right: 20px;
+    }
+
+    .recipe-tags {
+        span {
+            font-size: 14px;
+            text-transform: capitalize;
+            color: $color-cadet-blue-crayola;
+            font-weight: bold;
+        }
     }
 
     .recipe-stats {

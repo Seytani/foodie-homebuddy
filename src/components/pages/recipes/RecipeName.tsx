@@ -28,7 +28,7 @@ const RecipeName: FunctionComponent<IRecipeNameProps> = ({ onChange }) => {
         <h1>{ name }</h1>
     </div>);
 
-    return <div className="recipe-name mb-30">
+    return <div className="recipe-name mb-20">
         {showTitle
           ? recipeTitle
           : <Input

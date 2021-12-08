@@ -7,9 +7,9 @@ interface IngredientListProps {
 }
 
 const IngredientList: FunctionComponent<IngredientListProps> = ({ ingredients }) => {
-    const ingredientsItems = ingredients.map(ingredient => (
-        <li className="ingredient" key={ ingredient.id }>
-            <span className="ingredient__qty">1&nbsp;</span>
+    const ingredientsItems = ingredients.map((ingredient, index) => (
+        <li className="ingredient mb-15" key={ index }>
+            <span className="ingredient__qty">{ingredient.quantity}&nbsp;</span>
             <span className="ingredient__name">{ ingredient.name }</span>
         </li>
     ));
