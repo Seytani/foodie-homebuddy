@@ -5,6 +5,7 @@
 
     .recipe-info {
         padding-top: 30px;
+        width: 50%;
     }
 
     .recipe-header {
@@ -27,16 +28,24 @@
         }
     }
 
-    .recipe-name {
+    .recipe-name-container {
         padding-right: 20px;
+        .recipe-name {
+            display: flex;
+        }
     }
 
     .recipe-tags {
+        flex-wrap: wrap;
         span {
             font-size: 14px;
             text-transform: capitalize;
-            color: $color-cadet-blue-crayola;
+            color: $color-cultured;
+            padding: 5px;
             font-weight: bold;
+            background-color: $color-cadet-blue-crayola;
+            border-radius: 25px;
+            margin: 2px;
         }
     }
 

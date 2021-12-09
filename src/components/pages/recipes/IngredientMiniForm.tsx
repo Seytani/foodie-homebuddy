@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, KeyboardEvent } from 'react';
 
 import '@/styles/components/pages/recipes/ingredient_mini_form.scss';
 
@@ -19,7 +19,17 @@ const IngredientMiniForm: FunctionComponent<IngredientMiniFormProps> = ({ saveIn
 
     function handleSaveClick() {
         saveIngredient(ingredientName, qty);
+        setQty('');
+        setIngredientName('');
         setVisible(false);
+    }
+
+    function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+        if(e.key === 'Enter') {
+        saveIngredient(ingredientName, qty);
+        setVisible(false);
+
+        }
     }
 
     if (!visible) {
@@ -34,12 +44,16 @@ const IngredientMiniForm: FunctionComponent<IngredientMiniFormProps> = ({ saveIn
                 <Input
                     label="qty"
                     onChange={e => setQty(e.target.value)}
+                    autoFocus
+                    required
                 />
             </div>
             <div className="name-field">
                 <Input
                     label="name"
                     onChange={e => setIngredientName(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    required
                 />
             </div>
         </div>
