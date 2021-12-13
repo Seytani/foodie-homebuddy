@@ -32,13 +32,14 @@ const RecipeEdit : FunctionComponent = () => {
 
     return <div className="recipes-edit">
         <div className="recipe-header d-flex mb-30">
-            <div className="recipe-info fgrow-1">
+            <div className="recipe-info">
                 <RecipeName  onChange={handleNameOnChange} />
                 <div className="recipe-last-prep mb-20">
                     Last prep: <span>3 weeks ago</span>
                 </div>
-                <div className="recipe-tags mb-30">
+                <div className="recipe-tags mb-30 d-flex">
                     <span>mexican</span>
+
                 </div>
                 <div className="recipe-stats mb-40 d-flex">
                     <div className="stat fgrow-1">
