@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import "@/styles/components/base/Spinner.scss";
 
-export interface SpinnerProps {
+interface SpinnerProps {
 	color?: string;
 	size?: number;
 	text?: string;

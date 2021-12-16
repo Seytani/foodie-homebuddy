@@ -1,28 +1,65 @@
-import React, { FunctionComponent, useState } from "react";
+import React, {
+	FunctionComponent,
+	useContext,
+	useState,
+	createContext,
+} from "react";
 
-import '@/styles/components/base/Notification.scss';
+import "@/styles/components/base/Notification.scss";
 
-let $visible;
-let $setVisible; 
-let $setText;
+export const NotificationContext = createContext(null);
 
-export function notUseNotification() {
-    return (text) => {
-        $setText(text);
-        $setVisible(!$visible);
-    };
+export const NotificationProvider = ({ children }) => {
+	const [visible, setVisible] = useState(false);
+	const [title, setTitle] = useState("");
+	const [details, setDetails] = useState("");
+	const [style, setStyle] = useState("");
+
+	return (
+		<NotificationContext.Provider
+			value={{ visible, setVisible, title, setTitle, details, setDetails, style, setStyle }}
+		>
+			{children}
+		</NotificationContext.Provider>
+	);
+};
+
+export function useNotification() {
+	const notification = useContext(NotificationContext);
+    
+	return (title, details='', style = "info") => {
+        notification.setVisible(!notification.visible);
+        notification.setTitle(title);
+        notification.setDetails(details);
+        notification.setStyle(style);
+	};
 }
 
 const Notification: FunctionComponent = () => {
-    const [visible, setVisible] = useState(false);
-    const [text, setText] = useState('');
-    $visible = visible;
-    $setVisible = setVisible;
-    $setText = setText;
+	const notification = useContext(NotificationContext);
 
-    return <div className={`notification ${visible ? 'visible' : ''}`}>
-        { text }
-    </div>;
+	return (
+		<div
+			className={`notification ${notification.style} ${
+				notification.visible ? "visible" : ""
+			}`}
+		>
+			<div className="d-flex fai-center">
+				<div className="icon"></div>
+
+				<div>
+					<p className="notification__title">{notification.title}</p>
+					{notification.details && <p className="notification__text">{notification.details}</p>}
+				</div>
+				<div
+					className="material-icons notification__close"
+					onClick={() => notification.setVisible(false)}
+				>
+					close
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Notification;

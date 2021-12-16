@@ -1,8 +1,6 @@
-import React, { FunctionComponent, useReducer, useContext } from 'react';
+import React, { FunctionComponent, useReducer } from 'react';
 
-import Notification, { useNotification, NotificationContext } from '../base/NotificationV2';
-
-// import { useNotification } from '@/components/base/NotificationV2';
+import { useNotification } from '../base/Notification';
 
 const initialState = {count: 0};
 
@@ -19,12 +17,7 @@ function reducer(state, action) {
 
 const Test: FunctionComponent = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    // const showNotification = useNotification();
-
-    const notification = useContext(NotificationContext);
-    const toggleNotification = () => {
-      notification.setVisible(!notification.visible);
-    };
+    const showNotification = useNotification();
 
     return <div className="d-flex fjc-center">
         <span>
@@ -32,7 +25,7 @@ const Test: FunctionComponent = () => {
         </span>
         <button onClick={()=> dispatch('increment')}>+</button>
         <button onClick={()=> dispatch('decrement')}>-</button>
-        <button onClick={() => toggleNotification()}>Show</button>
+        <button onClick={() => showNotification("This is the title", '', 'success')}>Show</button>
     </div>;
 };
 

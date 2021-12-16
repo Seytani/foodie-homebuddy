@@ -1,17 +1,77 @@
 .notification {
-    color: $color-cultured;
-    background-color: $color-keppel;
-    border-radius: 4px;
-    min-width: 300px;
-    padding: 24px;
-    position: absolute;
-    left: 300px;
-    bottom: 20px;
-    z-index: 10;
-    display: none;
+	position: absolute;
+	left: 300px;
+	bottom: 20px;
+	z-index: 10;
+	display: none;
+	border-radius: 5px;
+	min-width: 600px;
+	padding: 15px;
+	color: $color-cultured;
 
-    &.visible {
-        display: block;
-    }
+	&.visible {
+		display: block;
+	}
+
+	&.success {
+		background-color: $color-leaves;
+
+		.icon:before {
+			font-family: "Material Icons";
+			content: "check_circle";
+		}
+	}
+
+	&.info {
+		background-color: $color-seas;
+
+		.icon:before {
+			font-family: "Material Icons";
+			content: "info";
+		}
+	}
+
+	&.warning {
+		background-color: $color-tangy-mustard;
+
+		.icon:before {
+			font-family: "Material Icons";
+			content: "warning";
+		}
+	}
+
+	&.danger {
+		background-color: $color-scarlett;
+
+		.icon:before {
+			font-family: "Material Icons";
+			content: "report";
+		}
+	}
+
+	&__title {
+		font-weight: 500;
+	}
+
+	&__text {
+		margin-top: 8px;
+		font-size: 14px;
+	}
+
+	&__close {
+		font-size: 20px;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+
+		&:hover {
+			color: $color-light-gray;
+			cursor: pointer;
+		}
+	}
 }
 
+.icon {
+	font-size: 36px;
+	margin-right: 10px;
+}

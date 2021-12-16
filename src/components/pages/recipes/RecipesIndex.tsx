@@ -1,14 +1,15 @@
-import React, { FunctionComponent } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import React, { FunctionComponent } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
 import "@/styles/components/pages/recipes/recipes_index.scss";
 import strawberryImage from "@/assets/img/strawberry-grain.png";
 import fruitBowlImage from "@/assets/img/img-fruit-bowl.png";
 
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { recipesSelector } from "@/store/recipes-slice";
 
 import RecipeCard from "./RecipeCard";
+import CurrentTime from "@/components/base/CurrentTime";
 
 const RecipesIndex: FunctionComponent = () => {
 	const { url } = useRouteMatch();
@@ -46,8 +47,8 @@ const RecipesIndex: FunctionComponent = () => {
 					alt="Strawberry"
 				/>
 			</div>
-
 			<div className="recipe-list">
+			<CurrentTime />
 				<div className="d-flex">
 					<h4 className="fgrow-1">Your recipes</h4>
 					<div>

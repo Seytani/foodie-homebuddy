@@ -3,16 +3,18 @@ import React, { FunctionComponent } from 'react';
 import '@/styles/components/layout/Default.scss';
 
 import Navbar from '../base/Navbar';
-import Notification from '../base/NotificationV2';
+import Notification from '../base/Notification';
 
 import { useDispatch, useSelector } from '@/store/hooks';
 import { authSelector } from '@/store/auth-slice';
+import { useCurrentTime } from '../base/CurrentTime';
 
 const DefaultLayout: FunctionComponent = (props) => {
 
     const auth = useSelector(authSelector);
     const dispatch = useDispatch();
-    
+    const showTime = useCurrentTime();
+
     function getUsername(user: IUser): string {
         if (!user) {
             return '';
@@ -33,6 +35,7 @@ const DefaultLayout: FunctionComponent = (props) => {
                     { auth.user &&
                         <span>hello { getUsername(auth.user) }</span>
                     }
+                    <div>{showTime.currentTime}</div>
                 </div>
                 <Navbar />
             </aside>
