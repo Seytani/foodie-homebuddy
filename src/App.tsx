@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import '@/styles/index.scss';
@@ -10,7 +10,10 @@ import PrivateRoute from './components/base/PrivateRoute';
 import Ingredients from './components/pages/Ingredients/Ingredients';
 import Recipes from './components/pages/recipes/Recipes';
 import Test from '@/components/pages/Test';
+import { NotificationProvider } from '@/components/base/NotificationV2';
+
 import { useDispatch } from './store/hooks';
+import { useNotification } from '@/components/base/NotificationV2';
 import { set_auth } from './store/auth-slice';
 
 
@@ -22,7 +25,10 @@ function App(): JSX.Element {
   const signUpUrl = `${authProviderUrl}/users/sign_up?callback=${callback}`;
 
   const dispatch = useDispatch();
-    
+  // const toggleNotification = useNotification();
+  const toggleNotification = useNotification();
+
+
   useEffect(() => {
     async function fetch() {
       const user: IUser = await client.get('userinfo');
@@ -33,24 +39,29 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <Router>
-        <DefaultLayout>
-          <Switch>
-            <PrivateRoute path="/ingredients" jwt={token}  redirectUrl={loginUrl}>
-              <Ingredients />
-            </PrivateRoute>
-            <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
-              <Recipes />
-            </PrivateRoute>
-            <Route path="/test">
-              <Test />
-            </Route>
-            <Route path="/">
-              <h1>HomePage is public</h1>
-            </Route>
-          </Switch>
-        </DefaultLayout>
-      </Router>
+      <NotificationProvider>
+        <Router>
+          <DefaultLayout>
+            <Switch>
+              <PrivateRoute path="/ingredients" jwt={token}  redirectUrl={loginUrl}>
+                <Ingredients />
+              </PrivateRoute>
+              <PrivateRoute path="/recipes" jwt={token}  redirectUrl={loginUrl}>
+                <Recipes />
+              </PrivateRoute>
+              <Route path="/test">
+                <Test />
+              </Route>
+              <Route path="/">
+                <div className="d-flex">
+                  <h1>HomePage is public</h1>
+                  <button onClick={() => toggleNotification()}>Show</button>
+                </div>
+              </Route>
+            </Switch>
+          </DefaultLayout>
+        </Router>
+      </NotificationProvider>
     </div>
   );
 }

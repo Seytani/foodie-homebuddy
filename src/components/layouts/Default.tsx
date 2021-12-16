@@ -3,6 +3,8 @@ import React, { FunctionComponent } from 'react';
 import '@/styles/components/layout/Default.scss';
 
 import Navbar from '../base/Navbar';
+import Notification from '../base/NotificationV2';
+
 import { useDispatch, useSelector } from '@/store/hooks';
 import { authSelector } from '@/store/auth-slice';
 
@@ -37,6 +39,7 @@ const DefaultLayout: FunctionComponent = (props) => {
             <main>
                 { props.children }
             </main>
+            <Notification />
         </div>
     );
 };
