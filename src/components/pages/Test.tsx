@@ -25,7 +25,7 @@ const Test: FunctionComponent = () => {
         </span>
         <button onClick={()=> dispatch('increment')}>+</button>
         <button onClick={()=> dispatch('decrement')}>-</button>
-        <button onClick={() => showNotification("This is the title", '', 'success')}>Show</button>
+        <button onClick={() => showNotification({style: 'warning', details: "These are details"})}>Show</button>
     </div>;
 };
 

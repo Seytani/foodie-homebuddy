@@ -12,7 +12,6 @@ import Recipes from "./components/pages/recipes/Recipes";
 import Test from "@/components/pages/Test";
 
 import { NotificationProvider } from "@/components/base/Notification";
-import { CurrentTimeProvider } from "./components/base/CurrentTime";
 
 import { useDispatch } from "./store/hooks";
 import { set_auth } from "./store/auth-slice";
@@ -39,7 +38,6 @@ function App(): JSX.Element {
 	return (
 		<div className="App">
 			<NotificationProvider>
-				<CurrentTimeProvider>
 					<Router>
 						<DefaultLayout>
 							<Switch>
@@ -68,7 +66,6 @@ function App(): JSX.Element {
 							</Switch>
 						</DefaultLayout>
 					</Router>
-				</CurrentTimeProvider>
 			</NotificationProvider>
 		</div>
 	);

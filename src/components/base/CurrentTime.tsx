@@ -1,8 +1,6 @@
-import React, { createContext, FunctionComponent, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export const CurrentTimeContext = createContext(null);
-
-export const CurrentTimeProvider = ({children}) => {
+function useCurrentTime() {
 	const [currentTime, setcCurrentTime] = useState(
 		new Date().toLocaleString("en-US")
 	);
@@ -14,22 +12,8 @@ export const CurrentTimeProvider = ({children}) => {
 
 		return () => clearInterval(dateTimer);
 	}, []);
-
-
-    return <CurrentTimeContext.Provider value={{currentTime}}>
-		{ children }
-	</CurrentTimeContext.Provider>;
-};
-
-export function useCurrentTime() {
-	const time = useContext(CurrentTimeContext);
-	return time;
+	return currentTime;
 }
 
-const CurrentTime: FunctionComponent = () => {
-	const time = useContext(CurrentTimeContext);
 
-	return <div className="c-danger"> {time.currentTime} </div>;
-};
-
-export default CurrentTime;
+export default useCurrentTime;

@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 import { recipesSelector } from "@/store/recipes-slice";
 
 import RecipeCard from "./RecipeCard";
-import CurrentTime from "@/components/base/CurrentTime";
 
 const RecipesIndex: FunctionComponent = () => {
 	const { url } = useRouteMatch();
@@ -48,7 +47,6 @@ const RecipesIndex: FunctionComponent = () => {
 				/>
 			</div>
 			<div className="recipe-list">
-			<CurrentTime />
 				<div className="d-flex">
 					<h4 className="fgrow-1">Your recipes</h4>
 					<div>

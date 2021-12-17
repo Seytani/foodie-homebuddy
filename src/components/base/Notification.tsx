@@ -11,9 +11,9 @@ export const NotificationContext = createContext(null);
 
 export const NotificationProvider = ({ children }) => {
 	const [visible, setVisible] = useState(false);
-	const [title, setTitle] = useState("");
+	const [title, setTitle] = useState("Sample Notification");
 	const [details, setDetails] = useState("");
-	const [style, setStyle] = useState("");
+	const [style, setStyle] = useState("info");
 
 	return (
 		<NotificationContext.Provider
@@ -27,11 +27,11 @@ export const NotificationProvider = ({ children }) => {
 export function useNotification() {
 	const notification = useContext(NotificationContext);
     
-	return (title, details='', style = "info") => {
+	return (payload) => {
         notification.setVisible(!notification.visible);
-        notification.setTitle(title);
-        notification.setDetails(details);
-        notification.setStyle(style);
+        payload.title && notification.setTitle(payload.title);
+        payload.details && notification.setDetails(payload.details);
+        payload.style && notification.setStyle(payload.style);
 	};
 }
 

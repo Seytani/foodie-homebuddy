@@ -7,7 +7,7 @@ import Notification from '../base/Notification';
 
 import { useDispatch, useSelector } from '@/store/hooks';
 import { authSelector } from '@/store/auth-slice';
-import { useCurrentTime } from '../base/CurrentTime';
+import useCurrentTime from '../base/CurrentTime';
 
 const DefaultLayout: FunctionComponent = (props) => {
 
@@ -35,7 +35,7 @@ const DefaultLayout: FunctionComponent = (props) => {
                     { auth.user &&
                         <span>hello { getUsername(auth.user) }</span>
                     }
-                    <div>{showTime.currentTime}</div>
+                    <div>{showTime}</div>
                 </div>
                 <Navbar />
             </aside>
