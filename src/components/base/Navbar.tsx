@@ -19,9 +19,15 @@ const Navbar: FunctionComponent = () => {
                 </a>
             </div>;
         } 
-        return <div className="login">
-            <a href={auth?.loginUrl}>Login</a>
-            <a href={auth?.signUpUrl}>Sign Up</a>
+        return <div className="login d-flex">
+            <ul>
+            <li>
+                <Link to="/login">Login</Link>
+            </li>
+            <li>
+                <Link to="/signup">Signup</Link>
+            </li>
+        </ul>
         </div>;
 
     };

@@ -3,13 +3,12 @@ import React, { FunctionComponent } from 'react';
 import '@/styles/components/layout/Default.scss';
 
 import Navbar from '../base/Navbar';
-import { useDispatch, useSelector } from '@/store/hooks';
+import { useSelector } from '@/store/hooks';
 import { authSelector } from '@/store/auth-slice';
 
 const DefaultLayout: FunctionComponent = (props) => {
 
     const auth = useSelector(authSelector);
-    const dispatch = useDispatch();
     
     function getUsername(user: IUser): string {
         if (!user) {

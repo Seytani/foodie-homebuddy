@@ -1,16 +1,19 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { authSelector } from '@/store/auth-slice';
+import { useSelector } from '@/store/hooks';
+import { Redirect, Route } from 'react-router-dom';
 
 type PrivateRouteProps = {
     children: JSX.Element;
-    jwt: string;
     path: string;
-    redirectUrl: string;
 }
 
-const PrivateRoute = ({ children, jwt, path, redirectUrl }: PrivateRouteProps): JSX.Element => {
-    if (!jwt) {
-        window.location.href = redirectUrl;
+const PrivateRoute = ({ children, path }: PrivateRouteProps): JSX.Element => {
+    const auth = useSelector(authSelector);
+    const isLoggedIn = !!auth?.user;
+    
+    if (!isLoggedIn) {
+        return <Redirect to="/login"/>;
     }
 
     return <Route path={path}>

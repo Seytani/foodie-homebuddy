@@ -1,11 +1,10 @@
 import React, { useEffect, useState, FunctionComponent } from 'react';
-
-import client from '../../../client';
-
+import { getApiClient } from '@/client';
 import IngredientForm from './IngredientForm';
 
 const Ingredients: FunctionComponent = () => {
     const [ingredients, setIngredients] = useState<IngredientInterface[]>([]);
+    const client = getApiClient();
 
     useEffect(() => {
         async function fetch() {

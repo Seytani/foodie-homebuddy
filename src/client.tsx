@@ -1,20 +1,35 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { getCookie } from './helpers';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
-const token = getCookie('jwt').replace('+', ' ');
-const client = axios.create({
-    baseURL: process.env.REACT_APP_AUTH_PROVIDER + '/api/v1',
-    headers: { Authorization: token }
+let client = null as AxiosInstance;
+
+export function initializeClient(jwt) {
+	const token = "Bearer " + jwt;
+	client = axios.create({
+		baseURL: process.env.REACT_APP_AUTH_PROVIDER + "/api",
+		headers: { Authorization: token },
+	});
+    client.interceptors.response.use(handleSuccess, handleError);
+    console.log("Client initialized with jwt: ", jwt);
+}
+export function getApiClient() {
+    if(!client) {
+        throw new Error("Client has not been initialized");
+    }
+    return client;
+}
+
+
+export const authClient = axios.create({
+	baseURL: process.env.REACT_APP_AUTH_PROVIDER + "/auth",
 });
 
-client.interceptors.response.use(handleSuccess, handleError);
+
+authClient.interceptors.response.use(handleSuccess, handleError);
 
 function handleSuccess(response: AxiosResponse) {
-    return response.data;
+	return response.data;
 }
 
 function handleError(error: AxiosError) {
-    console.log(error);
+	console.log(error);
 }
-
-export default client;
