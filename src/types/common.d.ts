@@ -6,6 +6,7 @@ interface IContextProps {
 interface IState {
 	auth: IAuth;
 	recipes: IRecipes;
+	meals: IMealsState;
 }
 
 interface IAction {
@@ -40,4 +41,16 @@ interface IngredientInterface {
 	name: string;
 	quantity: string;
 	user_id?: number;
+}
+
+interface IMealState {
+	meals: IMeal[];
+	state: string;
+}
+
+interface IMeal {
+	id?: number;
+	type: string;
+	date: Date;
+	recipe: RecipeInterface;
 }

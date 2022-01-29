@@ -1,0 +1,23 @@
+.meal-plan-page {
+    width: 1080px;
+    margin: 0 auto;
+
+    .page-title {
+        text-align: center;
+    }
+
+    .weekdays {
+        width: 100%;
+        .weekday {
+            flex-basis: 14.28%;
+        }
+    }
+
+    .days {
+        .day {
+            border: 1px solid $color-yellow-green-crayola;
+            flex-basis: 14.28%;
+            height: 120px;
+        }
+    }
+}

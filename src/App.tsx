@@ -7,7 +7,7 @@ import DefaultLayout from "./components/layouts/Default";
 import PrivateRoute from "./components/base/PrivateRoute";
 import Ingredients from "./components/pages/Ingredients/Ingredients";
 import Recipes from "./components/pages/recipes/Recipes";
-import Test from "@/components/pages/Test";
+import MealPlan from "./components/pages/meal-plan/MealPlan";
 import Signup from "./components/pages/auth/Signup";
 import Login from "./components/pages/auth/Login";
 
@@ -18,21 +18,17 @@ function App(): JSX.Element {
 			<Router>
 				<DefaultLayout>
 					<Switch>
-						<PrivateRoute
-							path="/ingredients"
-						>
+						<PrivateRoute path="/ingredients">
 							<Ingredients />
 						</PrivateRoute>
-						<PrivateRoute
-							path="/recipes"
-						>
+						<PrivateRoute path="/recipes">
 							<Recipes />
+						</PrivateRoute>
+						<PrivateRoute path="/meal-plan">
+							<MealPlan />
 						</PrivateRoute>
 						<Route path="/signup" component={Signup} />
 						<Route path="/login" component={Login} />
-						<Route path="/test">
-							<Test />
-						</Route>
 						<Route path="/" component={Login} />
 					</Switch>
 				</DefaultLayout>
