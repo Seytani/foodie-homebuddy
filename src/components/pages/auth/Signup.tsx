@@ -28,7 +28,6 @@ const Signup: FunctionComponent = () => {
 	}
 
 	function matchPassword() {
-		console.log("MATCHED PASSWORD: " + password.localeCompare(confPassword));
 		return !!(password.localeCompare(confPassword));
 	}
 

@@ -9,7 +9,6 @@ export function initializeClient(jwt) {
 		headers: { Authorization: token },
 	});
     client.interceptors.response.use(handleSuccess, handleError);
-    console.log("Client initialized with jwt: ", jwt);
 }
 export function getApiClient() {
     if(!client) {

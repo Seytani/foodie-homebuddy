@@ -1,0 +1,9 @@
+.day {
+    border: 1px solid $color-yellow-green-crayola;
+    flex-basis: 14.28%;
+    height: 120px;
+
+    .label {
+        margin: 3px 0 0  3px;
+    }
+}

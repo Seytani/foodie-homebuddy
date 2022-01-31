@@ -1,20 +1,24 @@
 import React, { FunctionComponent } from 'react';
 
+import '@/styles/components/base/Calendar/Day.scss';
+
 interface DayProps {
     date: Date;
-    event: JSX.Element;
+    events: [JSX.Element];
 }
 
-const Day: FunctionComponent<DayProps> = ({ date, event }) => {
+const Day: FunctionComponent<DayProps> = ({ date, events }) => {
     const handleClick = () => {
         alert(date.getDate());
     };
 
     return <div className="day" onClick={ handleClick }>
-        { date.getDate() }
+        <span className="label">
+            { date.getDate() }
+        </span>
         <div>
             <div>
-                { event }
+                { events }
             </div>
         </div>
     </div>;
