@@ -7,12 +7,12 @@ const Ingredients: FunctionComponent = () => {
     const client = getApiClient();
 
     useEffect(() => {
-        async function fetch() {
+        async function fetch(): Promise<void> {
             const ingredients = await client.get<unknown, IngredientInterface[]>('ingredients');
             setIngredients(ingredients);
         }
         fetch();
-    }, []);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
     async function saveIngredient(name: string) {
         const newIngredient = await client

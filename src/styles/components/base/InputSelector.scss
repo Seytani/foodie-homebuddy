@@ -1,0 +1,23 @@
+.input-selector {
+	position: relative;
+
+	&__option-container {
+		position: absolute;
+        top: 16px;
+		background-color: #fff;
+		width: 100%;
+        border: solid 2px $color-light-gray;
+        border-radius: 5px;
+        max-height: 150px;
+        overflow-y: scroll;
+	}
+
+	&__option {
+		padding: 5px;
+
+		&:hover {
+			cursor: pointer;
+			background-color: $color-light-gray;
+		}
+	}
+}

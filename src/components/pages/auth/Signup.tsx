@@ -1,5 +1,5 @@
 import Input from "@/components/base/Input";
-import React, { FunctionComponent, useState, MouseEvent, useEffect } from "react";
+import React, { FunctionComponent, useState, MouseEvent } from "react";
 import { useDispatch } from "@/store/hooks";
 import { postNewUser } from "@/store/auth-slice";
 import { useHistory } from "react-router-dom";
@@ -9,27 +9,15 @@ const Signup: FunctionComponent = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confPassword, setConfPassword] = useState("");
-	const [enableRegistration, setEnableRegistration] =useState(false);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
-	useEffect(() => {
-		if(password.localeCompare(confPassword) === 0 && password != '' && confPassword != '') {
-			setEnableRegistration(true);
-		} else {
-			setEnableRegistration(false);
-		}
-	}), [password, confPassword];
+
 
 	async function handleSubmit(e: MouseEvent) {
 		e.preventDefault();
 		await dispatch(postNewUser({ email, username, password }));
 		history.push('/recipes');
-	}
-
-	function matchPassword() {
-		console.log("MATCHED PASSWORD: " + password.localeCompare(confPassword));
-		return !!(password.localeCompare(confPassword));
 	}
 
 	return (
@@ -55,7 +43,6 @@ const Signup: FunctionComponent = () => {
 			<button
 				className="btn"
 				onClick={handleSubmit}
-				disabled={!enableRegistration}
 			>
 				Sign Up
 			</button>
