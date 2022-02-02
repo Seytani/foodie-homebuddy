@@ -1,0 +1,30 @@
+.modal-wrapper {
+    display: none;
+
+    .curtain {
+        background: black;
+        opacity: 0.5;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+
+        .modal {
+            max-width: 500px;
+            background: white;
+            height: 200px;
+            margin: 200px auto;
+            border-radius: 6px;
+
+            &__header {
+                padding: 8px;
+            }
+        }
+    }
+
+	&.visible {
+		display: block;
+	}
+}

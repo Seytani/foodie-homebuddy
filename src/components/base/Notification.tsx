@@ -19,7 +19,7 @@ export const NotificationProvider = ({ children }) => {
 		<NotificationContext.Provider
 			value={{ visible, setVisible, title, setTitle, details, setDetails, style, setStyle }}
 		>
-			{children}
+			{ children }
 		</NotificationContext.Provider>
 	);
 };
@@ -40,7 +40,7 @@ const Notification: FunctionComponent = () => {
 
 	return (
 		<div
-			className={`notification ${notification.style} ${
+			className={`notification ${notification?.style} ${
 				notification.visible ? "visible" : ""
 			}`}
 		>

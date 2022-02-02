@@ -1,16 +1,28 @@
 .btn {
-  min-width: 64px;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border: none;
-  background-color: $color-ocean-green;
-  color: white;
-  border-radius: 16px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0px 5px 2px -2px $color-light-gray;
+	min-width: 64px;
+	padding: 6px 16px;
+	border: none;
+	background-color: $color-ocean-green;
+	color: white;
+	border-radius: 16px;
+	cursor: pointer;
+	box-shadow: 0px 5px 2px -2px $color-light-gray;
 
-  &:hover {
-    background-color: $color-keppel;
-  }
+	&:hover {
+		background-color: $color-stem;
+	}
+
+	&.btn-circular {
+		min-width: unset;
+		padding: 0;
+		display: flex;
+	}
+}
+
+[disabled] {
+	background-color: $color-slate-gray;
+	&:hover {
+		cursor: not-allowed;
+		background-color: $color-slate-gray;
+	}
 }

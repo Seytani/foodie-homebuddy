@@ -1,42 +1,43 @@
 interface IContextProps {
-    state: IState;
-    dispatch: any;
+	state: IState;
+	dispatch: any;
 }
 
 interface IState {
-    auth: IAuth;
-    recipes: IRecipes;
+	auth: IAuth;
+	recipes: IRecipes;
 }
 
 interface IAction {
-    type: string;
-    payload: any;
+	type: string;
+	payload: any;
 }
 
 interface IRecipes {
-    recipes: RecipeInterface[];
-    status: string;
+	recipes: RecipeInterface[];
+	status: string;
 }
 
 interface IAuth {
-    user: IUser;
-    loginUrl: string;
-    signUpUrl: string;
+	user: IUser;
+    status: string;
 }
 interface IUser {
-    id: number;
-    email: string;
+	id?: number;
+	username?: string;
+	email?: string;
+	password?: string;
 }
 interface RecipeInterface {
-    id?: number;
-    name: string;
-    instructions: string;
-    user_id?: number
+	id?: number;
+	name: string;
+	instructions: string;
+	user_id?: number;
 }
 
 interface IngredientInterface {
-    id?: number;
-    name: string;
-    quantity: string;
-    user_id?: number
+	id?: number;
+	name: string;
+	quantity: string;
+	user_id?: number;
 }
