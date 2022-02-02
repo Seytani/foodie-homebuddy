@@ -7,9 +7,19 @@ import React, {
 
 import "@/styles/components/base/Notification.scss";
 
+interface NotificationProviderProps {
+	children: JSX.Element;
+}
+
+interface UseNotificationPayload {
+	title?: string;
+	details?: string;
+	style?: string;
+}
+
 export const NotificationContext = createContext(null);
 
-export const NotificationProvider = ({ children }) => {
+export const NotificationProvider: FunctionComponent<NotificationProviderProps> = ({ children }) => {
 	const [visible, setVisible] = useState(false);
 	const [title, setTitle] = useState("Sample Notification");
 	const [details, setDetails] = useState("");
@@ -24,7 +34,7 @@ export const NotificationProvider = ({ children }) => {
 	);
 };
 
-export function useNotification() {
+export function useNotification() : (payload : UseNotificationPayload) => void {
 	const notification = useContext(NotificationContext);
     
 	return (payload) => {

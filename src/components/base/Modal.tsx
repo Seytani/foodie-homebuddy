@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, createContext, useContext } from 'react';
+import React, { FunctionComponent, useState, createContext, useContext, useRef, EventHandler, MouseEvent } from 'react';
 
 import "@/styles/components/base/Modal.scss";
 
@@ -47,11 +47,19 @@ export function useModal() : [(payload: UseModalPayload) => void, () => void] {
 
 const Modal: FunctionComponent = () => {
     const modal = useContext(ModalContext);
+    const modalRef = useRef(null);
     if (!modal) {
         return null;
     }
 
-    const closeModal = () => {
+    const closeModalFromOutside : EventHandler<MouseEvent<HTMLDivElement>> = (e) => {
+        if (modalRef.current.contains(e.target)) {
+            return;
+        }
+        modal.setVisible(false);
+    };
+    
+    const closeModal : EventHandler<MouseEvent<HTMLButtonElement>> = () => {
         modal.setVisible(false);
     };
 
@@ -59,8 +67,8 @@ const Modal: FunctionComponent = () => {
         <div 
             className={`modal-wrapper ${modal.visible ? 'visible' : ''}`}
         >
-            <div className="curtain" onClick={closeModal}>
-                <div className="modal d-flex fd-column">
+            <div className="curtain" onClick={closeModalFromOutside}>
+                <div className="modal d-flex fd-column" ref={modalRef}>
                     <div className="modal__header d-flex fjc-flex-end">
                         <Button variant="circular" onClick={closeModal}>
                             <span className="material-icons">close</span>
