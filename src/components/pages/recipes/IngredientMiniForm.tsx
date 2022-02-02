@@ -1,8 +1,8 @@
-import React, { FunctionComponent, useState, KeyboardEvent } from 'react';
-
+import React, { FunctionComponent, useState, KeyboardEvent, useEffect, ChangeEvent } from 'react';
 import '@/styles/components/pages/recipes/ingredient_mini_form.scss';
-
+import { getApiClient } from '@/client';
 import Input from '@/components/base/Input';
+import InputSelector from '@/components/base/InputSelector';
 
 interface IngredientMiniFormProps {
     saveIngredient: (name: string, qty: string) => void
@@ -12,9 +12,26 @@ const IngredientMiniForm: FunctionComponent<IngredientMiniFormProps> = ({ saveIn
     const [visible, setVisible] = useState(false);
     const [qty, setQty] = useState('');
     const [ingredientName, setIngredientName] = useState('');
+    const [userIngredients, setUserIngredients] = useState([]); 
+    // const options = [{id:1, name:'test1'}, {id:2, name:'test2'}, {id:3, name:'test3'}];
+    const client = getApiClient();
+    
+    useEffect(() => {
+        async function fetch() {
+            const ingredients = await client.get<unknown, IngredientInterface[]>('ingredients');
+            setUserIngredients(ingredients);
+        }
+        fetch();
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
+
 
     function handleAddIngredientClick() {
         setVisible(true);
+    }
+
+    function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+        setIngredientName(e.target.value);
+        
     }
 
     function handleSaveClick() {
@@ -44,16 +61,15 @@ const IngredientMiniForm: FunctionComponent<IngredientMiniFormProps> = ({ saveIn
                 <Input
                     label="qty"
                     onChange={e => setQty(e.target.value)}
-                    autoFocus
-                    required
                 />
             </div>
             <div className="name-field">
-                <Input
+                <InputSelector
                     label="name"
-                    onChange={e => setIngredientName(e.target.value)}
+                    onChange={handleOnChange}
                     onKeyPress={handleKeyPress}
-                    required
+                    displayName="name"
+                    options={userIngredients}
                 />
             </div>
         </div>

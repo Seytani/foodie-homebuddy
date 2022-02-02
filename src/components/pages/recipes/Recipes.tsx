@@ -18,7 +18,7 @@ const Recipes: FunctionComponent = () => {
 			dispatch(fetchRecipes());
 		}
 		fetch();
-	}, []);
+	}, []);// eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div className="recipes-page">

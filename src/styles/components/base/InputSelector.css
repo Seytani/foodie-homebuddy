@@ -1,0 +1,16 @@
+.input-selector {
+  position: relative;
+  max-width: 290px;
+}
+
+.input-selector__option-container {
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  bottom: -68px;
+}
+
+.input-selector__option:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=InputSelector.css.map */
