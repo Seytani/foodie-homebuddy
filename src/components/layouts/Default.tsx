@@ -3,11 +3,13 @@ import React, { FunctionComponent } from 'react';
 import '@/styles/components/layout/Default.scss';
 
 import Navbar from '../base/Navbar';
+import Notification from '../base/Notification';
+import Modal from '../base/Modal';
+
 import { useSelector } from '@/store/hooks';
 import { authSelector } from '@/store/auth-slice';
 
 const DefaultLayout: FunctionComponent = (props) => {
-
     const auth = useSelector(authSelector);
     
     function getUsername(user: IUser): string {
@@ -36,6 +38,8 @@ const DefaultLayout: FunctionComponent = (props) => {
             <main>
                 { props.children }
             </main>
+            <Notification />
+            <Modal />
         </div>
     );
 };
