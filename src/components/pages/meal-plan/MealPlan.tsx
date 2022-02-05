@@ -44,9 +44,13 @@ const MealPlan: FunctionComponent = () => {
         fetch();
     }, [dispatch]);
 
+    const handleDayClick = (date) => {
+        alert('new day click event');
+    };
+
     return <div className="meal-plan-page">
         <h1 className="page-title">Meal Plan</h1>
-        <Calendar month={1}>
+        <Calendar month={1} onDayClick={handleDayClick}>
             {mealEvents}
         </Calendar>
     </div>;

@@ -40,6 +40,7 @@ const days = (events, month) => {
 interface CalendarProps {
     children: [JSX.Element];
     month: number;
+    onDayClick?: (Date) => void;
 }
 
 const Calendar: FunctionComponent<CalendarProps> = ({ children, month }) => {
