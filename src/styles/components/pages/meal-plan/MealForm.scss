@@ -1,0 +1,17 @@
+.meal-form {
+    margin: 0 40px;
+
+    &__title {
+        margin-bottom: 40px;
+    }
+
+    &__form {
+        margin-bottom: 40px;
+    }
+
+    .form {
+        &__control {
+            margin-bottom: 20px;
+        }
+    }
+};

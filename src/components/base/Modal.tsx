@@ -67,7 +67,8 @@ const Modal: FunctionComponent = () => {
         <div 
             className={`modal-wrapper ${modal.visible ? 'visible' : ''}`}
         >
-            <div className="curtain" onClick={closeModalFromOutside}>
+            <div className="curtain"/>
+            <div className="modal-container"  onClick={closeModalFromOutside} >
                 <div className="modal d-flex fd-column" ref={modalRef}>
                     <div className="modal__header d-flex fjc-flex-end">
                         <Button variant="circular" onClick={closeModal}>

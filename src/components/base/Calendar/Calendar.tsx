@@ -9,7 +9,7 @@ const weekdaysList = weekdays.map(weekday => (
     <div className="weekday" key={weekday}>{ weekday }</div>
 ));
 
-const getEventHash = (events) => {
+const getEventHash = events => {
     const hash = {};
     for (const event of events) {
         if (!hash[event.props.date.toDateString()]) {
@@ -20,18 +20,15 @@ const getEventHash = (events) => {
     return hash;
 };
 
-const days = (events, month) => {
+const getDaysArray = month => {
     const startDate = new Date(`2022-${month}-01`);
     const weekdayIndex = startDate.getDay();
     startDate.setDate(startDate.getDate() - weekdayIndex);
     const endDate = new Date(startDate);
     endDate.setDate(endDate.getDate() + 42);
-    const eventHash = getEventHash(events);
-    const daysArray = [];
-
+    const daysArray = [] as Date[];
     while (startDate < endDate) {
-        events = eventHash[startDate.toDateString()];
-        daysArray.push(<Day date={new Date(startDate)} events={events} />);
+        daysArray.push(new Date(startDate));
         startDate.setDate(startDate.getDate() + 1);
     }
     return daysArray;
@@ -43,8 +40,18 @@ interface CalendarProps {
     onDayClick?: (Date) => void;
 }
 
-const Calendar: FunctionComponent<CalendarProps> = ({ children, month }) => {
-    const dayList = days(children, month);
+const Calendar: FunctionComponent<CalendarProps> = ({ children, month, onDayClick }) => {
+    const daysArray = getDaysArray(month);
+    const eventHash = getEventHash(children);
+
+    const dayList = daysArray.map((day, i) => {
+        const events = eventHash[day.toDateString()];
+
+        return <Day key={i} date={day} onDayClick={onDayClick}>
+            { events }
+        </Day>;
+    });
+
 
     return <div className='calendar'>
         <div className="calendar__body">

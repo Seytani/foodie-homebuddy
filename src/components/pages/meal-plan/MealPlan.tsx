@@ -1,28 +1,19 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 
 import '@/styles/components/pages/meal-plan/index.scss';
 
+import MealEvent from './MealEvent';
+import MealForm from './MealForm';
 import Calendar from '@/components/base/Calendar/Calendar';
-import { mealsSelector } from '@/store/meals-slice';
 
+import { mealsSelector } from '@/store/meals-slice';
 import { useSelector } from 'react-redux';
 import { useDispatch } from '@/store/hooks';
 import { fetchMeals } from '@/store/meals-slice';
 
-interface MealEventProps {
-    date: Date;
-    meal: IMeal;
-}
+import { useModal } from '@/components/base/Modal';
+import Button from '@/components/base/Button';
 
-const MealEvent: FunctionComponent<MealEventProps> = ({ date, meal }) => {
-    const showMeal = () => {
-        alert('edit');
-    };
-
-    return <div className='meal-event' onClick={showMeal}>
-        {`${meal.type} - ${meal.recipe.name}`}
-    </div>;
-};
 
 const getMealEvents = (meals) => {
     return meals.map(meal => {
@@ -34,8 +25,17 @@ const getMealEvents = (meals) => {
 const MealPlan: FunctionComponent = () => {
     const dispatch = useDispatch();
     const meals = useSelector(mealsSelector);
+    const [showModal] = useModal();
+    const [meal, setMeal] = useState(null as IMeal);
 
     const mealEvents = getMealEvents(meals);
+
+    const modalFooter = <div>
+        <div className="form__actions">
+            <Button>Save</Button>     
+            <Button>Cancel</Button>
+        </div>
+    </div>;
 
     useEffect(() => {
         async function fetch() {
@@ -45,8 +45,13 @@ const MealPlan: FunctionComponent = () => {
     }, [dispatch]);
 
     const handleDayClick = (date) => {
-        alert('new day click event');
+        showModal({ 
+            body: <MealForm onFormChange={handleFormChange} />,
+            footer: modalFooter,
+        });
     };
+
+    const handleFormChange = (newMeal) => (setMeal(newMeal));
 
     return <div className="meal-plan-page">
         <h1 className="page-title">Meal Plan</h1>

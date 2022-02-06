@@ -10,11 +10,22 @@
         bottom: 0;
         right: 0;
         z-index: 100;
+    }
+
+    .modal-container {
+        background: transparent;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 101;
+
 
         .modal {
-            max-width: 500px;
+            max-width: 501px;
             background: white;
-            height: 200px;
+            min-height: 200px;
             margin: 200px auto;
             border-radius: 6px;
 
@@ -23,6 +34,7 @@
             }
         }
     }
+
 
 	&.visible {
 		display: block;

@@ -4,12 +4,13 @@ import '@/styles/components/base/Calendar/Day.scss';
 
 interface DayProps {
     date: Date;
-    events: [JSX.Element];
+    children?: [JSX.Element];
+    onDayClick?: (Date) => void;
 }
 
-const Day: FunctionComponent<DayProps> = ({ date, events }) => {
+const Day: FunctionComponent<DayProps> = ({ date, children, onDayClick }) => {
     const handleClick = () => {
-        alert(date.getDate());
+        onDayClick(date);
     };
 
     return <div className="day" onClick={ handleClick }>
@@ -18,7 +19,7 @@ const Day: FunctionComponent<DayProps> = ({ date, events }) => {
         </span>
         <div>
             <div>
-                { events }
+                { children }
             </div>
         </div>
     </div>;
