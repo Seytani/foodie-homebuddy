@@ -52,5 +52,6 @@ interface IMeal {
 	id?: number;
 	type: string;
 	date: Date;
-	recipe: RecipeInterface;
+	recipe?: RecipeInterface;
+	recipe_id?: string;
 }

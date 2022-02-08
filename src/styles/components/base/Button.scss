@@ -6,13 +6,19 @@
 	color: white;
 	border-radius: 16px;
 	cursor: pointer;
-	box-shadow: 0px 5px 2px -2px $color-light-gray;
+	box-shadow: 0px 5px 2px -2px $color-gainsboro;
 
 	&:hover {
 		background-color: $color-stem;
 	}
 
-	&.btn-circular {
+	&.btn-secondary,
+	&.btn-circular-secondary {
+		background-color: $color-light-gray;
+	}
+
+	&.btn-circular,
+	&.btn-circular-secondary {
 		min-width: unset;
 		padding: 0;
 		display: flex;

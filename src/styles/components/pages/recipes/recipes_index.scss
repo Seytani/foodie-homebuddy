@@ -14,27 +14,6 @@
             left: -40px;
         }
 
-        .search {
-            position: relative;
-            input {
-                width: 450px;
-                line-height: 56px;
-                border-radius: 3em;
-                outline: none;
-                border: none;
-                box-shadow: 0 4px 10px $color-light-gray;
-                padding: 10px 0 10px 75px;
-                font-size: 22px;
-
-            }
-
-            .icon {
-                position: absolute;
-                font-size: 32px;
-                left: 30px;
-            }
-        }
-
         .fruit-bowl {
             position: absolute;
             right: 0;

@@ -8,6 +8,7 @@ import fruitBowlImage from "@/assets/img/img-fruit-bowl.png";
 import { useSelector } from "react-redux";
 import { recipesSelector } from "@/store/recipes-slice";
 
+import SearchInput from "@/components/base/SearchInput";
 import RecipeCard from "./RecipeCard";
 
 const RecipesIndex: FunctionComponent = () => {
@@ -36,10 +37,7 @@ const RecipesIndex: FunctionComponent = () => {
 					src={strawberryImage}
 					alt="Strawberry"
 				/>
-				<div className="search d-flex fai-center">
-					<span className="icon material-icons">search</span>
-					<input type="text" />
-				</div>
+				<SearchInput />
 				<img
 					className="fruit-bowl"
 					src={fruitBowlImage}

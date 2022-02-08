@@ -39,7 +39,6 @@ const DefaultLayout: FunctionComponent = (props) => {
                 { props.children }
             </main>
             <Notification />
-            <Modal />
         </div>
     );
 };

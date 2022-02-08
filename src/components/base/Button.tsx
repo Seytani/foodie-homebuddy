@@ -1,12 +1,12 @@
 import React, { EventHandler, FunctionComponent, MouseEvent } from 'react';
 
-interface ButtonProps {
+export interface ButtonProps {
     children: JSX.Element | string;
     variant?: string;
     onClick?: EventHandler<MouseEvent<HTMLButtonElement>>
 }
 
-const Button: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
+const Button: FunctionComponent<ButtonProps> = (props) => {
     const { children, variant='primary' } = props;
 
     return <>

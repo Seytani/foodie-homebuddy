@@ -15,7 +15,6 @@ export const fetchRecipes = createAsyncThunk('recipes/fetch', async () => {
 export const postRecipe = createAsyncThunk(
 	'recipes/post',
 	async (newRecipe: RecipeInterface) => {
-
 		const client = getApiClient();
 		return await client.post('recipes', newRecipe);
 	}

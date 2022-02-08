@@ -11,6 +11,7 @@ ReactDOM.render(
     <Provider store={store}>
       <App />
     </Provider>
+    <div id='modal-wrapper'></div>
   </React.StrictMode>,
   document.getElementById('root')
 );

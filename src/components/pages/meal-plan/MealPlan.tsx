@@ -3,17 +3,13 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import '@/styles/components/pages/meal-plan/index.scss';
 
 import MealEvent from './MealEvent';
-import MealForm from './MealForm';
+import MealForm from './MealForm/MealForm';
 import Calendar from '@/components/base/Calendar/Calendar';
 
 import { mealsSelector } from '@/store/meals-slice';
 import { useSelector } from 'react-redux';
 import { useDispatch } from '@/store/hooks';
 import { fetchMeals } from '@/store/meals-slice';
-
-import { useModal } from '@/components/base/Modal';
-import Button from '@/components/base/Button';
-
 
 const getMealEvents = (meals) => {
     return meals.map(meal => {
@@ -25,17 +21,10 @@ const getMealEvents = (meals) => {
 const MealPlan: FunctionComponent = () => {
     const dispatch = useDispatch();
     const meals = useSelector(mealsSelector);
-    const [showModal] = useModal();
-    const [meal, setMeal] = useState(null as IMeal);
+    const [date, setDate] = useState(new Date);
+    const [showModal, setShowModal] = useState(false);
 
     const mealEvents = getMealEvents(meals);
-
-    const modalFooter = <div>
-        <div className="form__actions">
-            <Button>Save</Button>     
-            <Button>Cancel</Button>
-        </div>
-    </div>;
 
     useEffect(() => {
         async function fetch() {
@@ -44,20 +33,21 @@ const MealPlan: FunctionComponent = () => {
         fetch();
     }, [dispatch]);
 
-    const handleDayClick = (date) => {
-        showModal({ 
-            body: <MealForm onFormChange={handleFormChange} />,
-            footer: modalFooter,
-        });
+    const handleDayClick = (selectedDate) => {
+        setDate(selectedDate);
+        setShowModal(true);
     };
-
-    const handleFormChange = (newMeal) => (setMeal(newMeal));
 
     return <div className="meal-plan-page">
         <h1 className="page-title">Meal Plan</h1>
         <Calendar month={1} onDayClick={handleDayClick}>
-            {mealEvents}
+            { mealEvents }
         </Calendar>
+        <MealForm
+            date={date}
+            visible={showModal}
+            onClose={() => setShowModal(false)}
+        />
     </div>;
 };
 

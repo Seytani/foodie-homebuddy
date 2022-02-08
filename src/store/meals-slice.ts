@@ -6,6 +6,13 @@ export const fetchMeals = createAsyncThunk('meals/fetch', async () => {
     return await client.get<unknown, IMeal[]>('meals');
 });
 
+export const postMeal = createAsyncThunk('meals/post',
+    async (newMeal: IMeal) => {
+        const client = getApiClient();
+        return await client.post<unknown, IMeal>('meals', newMeal);
+    }
+);
+
 const initialState = {
     meals: [] as IMeal[],
     status: '',
@@ -26,7 +33,10 @@ const mealSlice = createSlice({
 			})
 			.addCase(fetchMeals.rejected, (state) => {
 				state.status = 'rejected';
-			});
+			})
+            .addCase(postMeal.fulfilled, (state, action) => {
+                state.meals.push(action.payload);
+            });
     }
 });
 

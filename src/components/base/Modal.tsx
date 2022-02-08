@@ -1,71 +1,34 @@
-import React, { FunctionComponent, useState, createContext, useContext, useRef, EventHandler, MouseEvent } from 'react';
+import ReactDOM from 'react-dom';
+import React, { FunctionComponent, useRef, EventHandler, MouseEvent } from 'react';
 
 import "@/styles/components/base/Modal.scss";
 
 import Button from './Button';
 
-interface ModalProviderProps {
+interface ModalProps {
     children: JSX.Element;
+    visible: boolean;
+    onClose: () => void;
 }
 
-interface UseModalPayload {
-    body: JSX.Element;
-    footer?: JSX.Element;
-}
-
-export const ModalContext = createContext(null);
-
-export const ModalProvider = ({ children }: ModalProviderProps): JSX.Element => {
-    const [visible, setVisible] = useState(false);
-    const [body, setBody] = useState(null as JSX.Element);
-    const [footer, setFooter] = useState(null as JSX.Element);
-
-    return (
-        <ModalContext.Provider
-            value={{ visible, setVisible, body, setBody, footer, setFooter }}
-        >
-            { children }
-        </ModalContext.Provider>
-    );
-};
-
-export function useModal() : [(payload: UseModalPayload) => void, () => void] {
-    const modal = useContext(ModalContext);
-
-    const closeModal = () => {
-        modal.setVisible(false);
-    };
-
-    const showModal = (payload: UseModalPayload) => {
-        modal.setVisible(true);
-        payload.body && modal.setBody(payload.body);
-        payload.footer && modal.setFooter(payload.footer);
-    };
-    
-    return [showModal, closeModal];
-}
-
-const Modal: FunctionComponent = () => {
-    const modal = useContext(ModalContext);
+const Modal: FunctionComponent<ModalProps> = ({ children, visible, onClose }) => {
+    const modalWrapper = document.getElementById('modal-wrapper');
     const modalRef = useRef(null);
-    if (!modal) {
-        return null;
-    }
 
     const closeModalFromOutside : EventHandler<MouseEvent<HTMLDivElement>> = (e) => {
         if (modalRef.current.contains(e.target)) {
             return;
         }
-        modal.setVisible(false);
+        onClose();
     };
     
     const closeModal : EventHandler<MouseEvent<HTMLButtonElement>> = () => {
-        modal.setVisible(false);
+        onClose();
     };
 
-    return (
+    return ReactDOM.createPortal(
         <div 
-            className={`modal-wrapper ${modal.visible ? 'visible' : ''}`}
+            className={`modal-wrapper ${visible ? 'visible' : ''}`}
         >
             <div className="curtain"/>
             <div className="modal-container"  onClick={closeModalFromOutside} >
@@ -75,15 +38,13 @@ const Modal: FunctionComponent = () => {
                             <span className="material-icons">close</span>
                         </Button>
                     </div>
-                    <div className="modal__body fgrow-1">
-                        { modal.body }
-                    </div>
-                    <div className="modal___footer">
-                        { modal.footer }
+                    <div className="modal__body">
+                        { children }
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        modalWrapper
     );
 };
 
